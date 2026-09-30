@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patinhas & Amigos | Interesse em Adoção</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+<header class="public-header">
+
+    <div class="container nav">
+
+        <a class="brand" href="index.html">
+
+            <b>P</b>
+
+            <span>
+                Patinhas
+                <small>& Amigos</small>
+            </span>
+
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="index.html">Início</a>
+            <a class="active" href="adocao.html">Adoção</a>
+            <a href="doacao.html">Doações</a>
+            <a href="animais.html">Animais</a>
+            <a href="login.html">Área restrita</a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<section class="page-hero">
+
+    <div class="container">
+
+        <span class="eyebrow">
+            INTERESSE EM ADOÇÃO
+        </span>
+
+        <h1>
+            Quero conhecer esse animal.
+        </h1>
+
+        <p>
+            Preencha seus dados para demonstrar interesse
+            na adoção.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container interesse-grid">
+
+
+        <!-- ANIMAL -->
+
+        <div class="interesse-animal">
+
+            <span class="eyebrow">
+                ANIMAL SELECIONADO
+            </span>
+
+            <div class="interesse-animal-card">
+
+                <div
+                    id="interesseImagem"
+                    class="interesse-animal-img">
+                </div>
+
+                <div class="interesse-animal-info">
+
+                    <h2 id="interesseNome">
+                        Animal
+                    </h2>
+
+                    <p id="interesseDescricao">
+                        Informações do animal.
+                    </p>
+
+                    <small id="interesseCaracteristicas">
+                        Características
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+
+        <div class="interesse-form-card">
+
+            <span class="eyebrow">
+                SEUS DADOS
+            </span>
+
+            <h2>
+                Demonstre seu interesse
+            </h2>
+
+            <p>
+                Informe seus dados para que a ONG possa
+                entrar em contato com você.
+            </p>
+
+
+            <form onsubmit="enviarInteresse(event)">
+
+                <div class="interesse-form-group">
+
+                    <label for="nomeInteresse">
+                        Nome completo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nomeInteresse"
+                        placeholder="Digite seu nome"
+                        required>
+
+                </div>
+
+
+                <div class="interesse-form-group">
+
+                    <label for="emailInteresse">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="emailInteresse"
+                        placeholder="seu@email.com"
+                        required>
+
+                </div>
+
+
+                <div class="interesse-form-group">
+
+                    <label for="telefoneInteresse">
+                        Telefone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="telefoneInteresse"
+                        placeholder="(13) 99999-9999"
+                        required>
+
+                </div>
+
+
+                <div class="interesse-form-group">
+
+                    <label for="outrosAnimais">
+                        Você possui outros animais?
+                    </label>
+
+                    <select id="outrosAnimais" required>
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="sim">
+                            Sim
+                        </option>
+
+                        <option value="nao">
+                            Não
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="interesse-form-group">
+
+                    <label for="mensagemInteresse">
+                        Mensagem
+                    </label>
+
+                    <textarea
+                        id="mensagemInteresse"
+                        rows="4"
+                        placeholder="Conte um pouco sobre o interesse na adoção...">
+                    </textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn primary full">
+
+                    Enviar interesse
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div>
+
+            <b>Patinhas & Amigos</b>
+
+            <br>
+
+            <small>
+                Proteção, cuidado e novas histórias.
+            </small>
+
+        </div>
+
+        <small>
+            Projeto acadêmico · 2026
+        </small>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    carregarAnimalInteresse();
+
+</script>
+
+</body>
+
+</html>
