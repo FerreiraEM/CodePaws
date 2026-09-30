@@ -5,172 +5,154 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Patinhas & Amigos | Área Restrita
-    </title>
+    <title>Patinhas e Amigos - Login</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
 </head>
+
 
 <body>
 
 
-    <header class="public-header">
+    <!-- CABEÇALHO -->
 
-        <div class="container nav">
+    <header>
 
-            <a class="brand" href="index.html">
+        <div class="nav-container">
 
-                <b>P</b>
-
-                <span>
-                    Patinhas
-                    <small>& Amigos</small>
-                </span>
-
+            <a href="index.html" class="logo">
+                🐾 Patinhas e Amigos
             </a>
 
 
-            <nav class="nav-links">
+            <ul class="nav-links">
 
-                <a href="index.html">
-                    Início
-                </a>
+                <li>
+                    <a href="index.html" class="nav-link">
+                        Início
+                    </a>
+                </li>
 
-                <a href="adocao.html">
-                    Adoção
-                </a>
+                <li>
+                    <a href="adocao.html" class="nav-link">
+                        Adoção
+                    </a>
+                </li>
 
-                <a href="doacao.html">
-                    Doações
-                </a>
+                <li>
+                    <a href="doacao.html" class="nav-link">
+                        Doações
+                    </a>
+                </li>
 
-                <a href="animais.html">
-                    Animais
-                </a>
+                <li>
+                    <a href="login.html" class="nav-link active">
+                        Login
+                    </a>
+                </li>
 
-                <a class="active" href="login.html">
-                    Login
-                </a>
-
-            </nav>
+            </ul>
 
         </div>
 
     </header>
 
 
-    <main class="login-page">
 
-        <div class="login-card">
+    <!-- LOGIN -->
 
-            <span class="eyebrow">
-                SISTEMA INTERNO
-            </span>
+    <main>
 
-            <h1>
-                Gestão Patinhas
-            </h1>
 
-            <p>
-                Acesse a área administrativa da ONG.
+        <div class="login-container">
+
+            <h2>
+                Área do Usuário
+            </h2>
+
+            <br>
+
+
+            <form onsubmit="fazerLogin(event)">
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="••••••••"
+                        required
+                    >
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="btn"
+                    style="width: 100%;"
+                >
+                    Entrar
+                </button>
+
+
+            </form>
+
+
+            <p style="margin-top: 1rem; text-align: center;">
+
+                <a href="index.html">
+                    ← Voltar para o início
+                </a>
+
             </p>
 
 
-            <label>
-
-                E-mail
-
-                <input
-                    class="input"
-                    id="email"
-                    type="email"
-                    placeholder="admin@patinhas.com">
-
-            </label>
-
-
-            <label>
-
-                Senha
-
-                <input
-                    class="input"
-                    id="password"
-                    type="password"
-                    placeholder="1234">
-
-            </label>
-
-
-            <button
-                class="btn primary full"
-                style="margin-top:18px"
-                onclick="login()">
-
-                Entrar no sistema
-
-            </button>
-
-
-            <div class="demo">
-
-                <b>
-                    Acesso de demonstração
-                </b>
-
-                <br>
-
-                E-mail: admin@patinhas.com
-
-                <br>
-
-                Senha: 1234
-
-            </div>
-
         </div>
+
 
     </main>
 
 
-    <script>
 
-        function login() {
+    <!-- RODAPÉ -->
 
-            const email =
-                document.getElementById("email").value;
+    <footer>
 
-            const password =
-                document.getElementById("password").value;
+        <p>
+            &copy; 2026 ONG Patinhas e Amigos -
+            Todos os direitos reservados.
+        </p>
 
-
-            if (
-                email === "admin@patinhas.com" &&
-                password === "1234"
-            ) {
-
-                window.location.href =
-                    "dashboard.html";
-
-            } else {
-
-                alert(
-                    "E-mail ou senha incorretos."
-                );
-
-            }
-
-        }
-
-    </script>
+    </footer>
 
 
 </body>
