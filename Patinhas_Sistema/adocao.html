@@ -7,298 +7,174 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Patinhas & Amigos | Adoção</title>
+    <title>Patinhas e Amigos - Início</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
 </head>
+
 
 <body>
 
 
     <!-- CABEÇALHO -->
 
-    <header class="public-header">
+    <header>
 
-        <div class="container nav">
+        <div class="nav-container">
 
-            <a class="brand" href="index.html">
-
-                <b>P</b>
-
-                <span>
-                    Patinhas
-                    <small>& Amigos</small>
-                </span>
-
+            <a href="index.html" class="logo">
+                🐾 Patinhas e Amigos
             </a>
 
 
-            <nav class="nav-links">
+            <ul class="nav-links">
 
-                <a href="index.html">
-                    Início
-                </a>
+                <li>
+                    <a href="index.html" class="nav-link active">
+                        Início
+                    </a>
+                </li>
 
-                <a class="active" href="adocao.html">
-                    Adoção
-                </a>
+                <li>
+                    <a href="adocao.html" class="nav-link">
+                        Adoção
+                    </a>
+                </li>
 
-                <a href="doacao.html">
-                    Doações
-                </a>
+                <li>
+                    <a href="doacao.html" class="nav-link">
+                        Doações
+                    </a>
+                </li>
 
-                <a href="animais.html">
-                    Animais
-                </a>
+                <li>
+                    <a href="login.html" class="nav-link">
+                        Login
+                    </a>
+                </li>
 
-                <a href="login.html">
-                    Login
-                </a>
-
-            </nav>
+            </ul>
 
         </div>
 
     </header>
 
 
-    <!-- CABEÇALHO DA PÁGINA -->
 
-    <section class="page-hero">
+    <!-- CONTEÚDO -->
 
-        <div class="container">
+    <main>
 
-            <span class="eyebrow">
-                ADOÇÃO RESPONSÁVEL
-            </span>
+
+        <!-- HERO -->
+
+        <section class="hero">
 
             <h1>
-                Encontre seu novo companheiro.
+                Transforme uma vida com o amor de um pet
             </h1>
 
             <p>
-                Veja alguns dos animais disponíveis e conheça
-                um pouco da história de cada um.
+                Resgatamos, cuidamos e encontramos lar para
+                cães e gatos que precisam de uma nova chance.
             </p>
 
-        </div>
+            <a href="adocao.html" class="btn">
+                Quero Adotar
+            </a>
 
-    </section>
-
-
-    <!-- FILTROS -->
-
-    <section class="section">
-
-        <div class="container">
-
-            <div class="filters">
-
-                <button class="active">
-                    Todos
-                </button>
-
-                <button>
-                    Cães
-                </button>
-
-                <button>
-                    Gatos
-                </button>
-
-                <button>
-                    Porte pequeno
-                </button>
-
-                <button>
-                    Porte médio
-                </button>
-
-            </div>
+        </section>
 
 
-            <!-- ANIMAIS -->
 
-            <div class="animal-grid">
+        <!-- COMO AJUDAR -->
 
+        <section>
 
-                <!-- THOR -->
-
-                <article class="animal-card">
-
-                    <div class="animal-img thor"></div>
-
-                    <div class="animal-body">
-
-                        <div class="between">
-
-                            <h3>
-                                Thor
-                            </h3>
-
-                            <span class="status ok">
-                                Disponível
-                            </span>
-
-                        </div>
-
-                        <p>
-                            Macho · 2 anos · Porte médio
-                        </p>
-
-                        <small>
-                            🐾 Sociável · ✓ Vacinado
-                        </small>
-
-                        <button
-                            class="btn outline"
-                            onclick="alert('Interesse registrado no protótipo.')">
-
-                            Tenho interesse
-
-                        </button>
-
-                    </div>
-
-                </article>
+            <h2>
+                Como você pode ajudar?
+            </h2>
 
 
-                <!-- LUNA -->
-
-                <article class="animal-card">
-
-                    <div class="animal-img luna"></div>
-
-                    <div class="animal-body">
-
-                        <div class="between">
-
-                            <h3>
-                                Luna
-                            </h3>
-
-                            <span class="status ok">
-                                Disponível
-                            </span>
-
-                        </div>
-
-                        <p>
-                            Fêmea · 1 ano · Porte pequeno
-                        </p>
-
-                        <small>
-                            🐾 Tranquila · ✓ Vacinada
-                        </small>
-
-                        <button
-                            class="btn outline"
-                            onclick="alert('Interesse registrado no protótipo.')">
-
-                            Tenho interesse
-
-                        </button>
-
-                    </div>
-
-                </article>
+            <div class="home-grid">
 
 
-                <!-- MEL -->
+                <div class="info-card">
 
-                <article class="animal-card">
+                    <h3>
+                        Adote
+                    </h3>
 
-                    <div class="animal-img mel"></div>
+                    <p>
+                        Dê um lar permanente para um animal
+                        que precisa de amor e cuidado.
+                    </p>
 
-                    <div class="animal-body">
+                    <br>
 
-                        <div class="between">
+                    <a href="adocao.html" class="btn">
+                        Ver animais
+                    </a>
 
-                            <h3>
-                                Mel
-                            </h3>
+                </div>
 
-                            <span class="status ok">
-                                Disponível
-                            </span>
 
-                        </div>
 
-                        <p>
-                            Fêmea · 3 anos · Porte pequeno
-                        </p>
+                <div class="info-card">
 
-                        <small>
-                            🐾 Carinhosa · ✓ Vacinada
-                        </small>
+                    <h3>
+                        Doe
+                    </h3>
 
-                        <button
-                            class="btn outline"
-                            onclick="alert('Interesse registrado no protótipo.')">
+                    <p>
+                        Contribua com ração, medicamentos
+                        ou ajuda financeira para manter o abrigo.
+                    </p>
 
-                            Tenho interesse
+                    <br>
 
-                        </button>
+                    <a href="doacao.html" class="btn">
+                        Fazer uma doação
+                    </a>
 
-                    </div>
+                </div>
 
-                </article>
+
+
+                <div class="info-card">
+
+                    <h3>
+                        Seja Voluntário
+                    </h3>
+
+                    <p>
+                        Doe seu tempo e carinho para ajudar
+                        os animais e nossa equipe.
+                    </p>
+
+                </div>
 
 
             </div>
 
+        </section>
 
-            <!-- BOTÃO PARA MAIS ANIMAIS -->
 
-            <div class="more-box">
+    </main>
 
-                <p>
-                    Quer visualizar mais animais cadastrados?
-                </p>
-
-                <a
-                    class="btn primary"
-                    href="animais.html">
-
-                    Ver mais animais
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
 
 
     <!-- RODAPÉ -->
 
-    <footer class="footer">
+    <footer>
 
-        <div class="container">
-
-            <div>
-
-                <b>
-                    Patinhas & Amigos
-                </b>
-
-                <br>
-
-                <small>
-                    Proteção, cuidado e novas histórias.
-                </small>
-
-            </div>
-
-            <small>
-                Projeto acadêmico · 2026
-            </small>
-
-        </div>
+        <p>
+            &copy; 2026 ONG Patinhas e Amigos -
+            Todos os direitos reservados.
+        </p>
 
     </footer>
 
