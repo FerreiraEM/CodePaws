@@ -1,278 +1,250 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patinhas e Amigos</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patinhas & Amigos | Início</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
+
 <body>
 
-<header>
-  <div class="nav-container">
-    <a href="#" class="logo" onclick="switchTab('home'); return false;">🐾 Patinhas e Amigos</a>
+    <!-- CABEÇALHO -->
+    <header class="public-header">
 
-    <ul class="nav-links" id="publicNav">
-      <li><a class="nav-link active" onclick="switchTab('home')">Início</a></li>
-      <li><a class="nav-link" onclick="switchTab('adocao')">Adoção</a></li>
-      <li><a class="nav-link" onclick="switchTab('doacoes')">Doações</a></li>
-      <li><a class="nav-link" onclick="switchTab('login')">Login</a></li>
-    </ul>
+        <div class="container nav">
 
-    <ul class="nav-links admin-nav hidden" id="adminNav">
-      <li><a class="nav-link active" onclick="switchTab('dashboard')">Dashboard</a></li>
-      <li><a class="nav-link" onclick="switchTab('estoque')">Estoque</a></li>
-      <li><a class="nav-link" onclick="switchTab('animais')">Animais</a></li>
-      <li><a class="nav-link" onclick="switchTab('agendas')">Agendas</a></li>
-      <li><a class="nav-link" onclick="switchTab('funcionarios')">Funcionários</a></li>
-      <li><a class="nav-link logout-link" onclick="logout()">Sair</a></li>
-    </ul>
-  </div>
-</header>
+            <a class="brand" href="index.html">
+                <b>P</b>
 
-<main>
+                <span>
+                    Patinhas
+                    <small>& Amigos</small>
+                </span>
+            </a>
 
-  <!-- ÁREA PÚBLICA -->
-  <section id="home" class="page active">
-    <div class="hero">
-      <h1>Transforme uma vida com o amor de um pet</h1>
-      <p>Resgatamos, cuidamos e encontramos lar para centenas de cães e gatos.</p>
-      <button class="btn" onclick="switchTab('adocao')">Quero Adotar</button>
-    </div>
+            <nav class="nav-links">
 
-    <h2>Como você pode ajudar?</h2>
-    <div class="home-grid">
-      <div class="info-card">
-        <h3>Adote</h3>
-        <p>Dê um lar permanente para um peludo que precisa de amor.</p>
-      </div>
-      <div class="info-card">
-        <h3>Doe</h3>
-        <p>Contribua com ração, remédios ou ajuda financeira.</p>
-      </div>
-      <div class="info-card">
-        <h3>Seja Voluntário</h3>
-        <p>Doe seu tempo e carinho nos fins de semana e eventos.</p>
-      </div>
-    </div>
-  </section>
+                <a class="active" href="index.html">
+                    Início
+                </a>
 
-  <section id="adocao" class="page">
-    <h2>Animais Disponíveis para Adoção</h2>
-    <p class="subtitle">Conheça alguns dos nossos peludos esperando por você:</p>
+                <a href="adocao.html">
+                    Adoção
+                </a>
 
-    <div class="pet-grid">
-      <div class="pet-card">
-        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80" alt="Cão Thor">
-        <div class="pet-info">
-          <h3>Thor</h3>
-          <p>Macho • 2 anos • Porte Médio</p><br>
-          <button class="btn" onclick="alert('Obrigado pelo interesse! Entre em contato para agendar uma visita.')">Tenho Interesse</button>
-        </div>
-      </div>
+                <a href="doacao.html">
+                    Doações
+                </a>
 
-      <div class="pet-card">
-        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=500&q=80" alt="Gata Luna">
-        <div class="pet-info">
-          <h3>Luna</h3>
-          <p>Fêmea • 1 ano • Porte Pequeno</p><br>
-          <button class="btn" onclick="alert('Obrigado pelo interesse! Entre em contato para agendar uma visita.')">Tenho Interesse</button>
-        </div>
-      </div>
+                <a href="animais.html">
+                    Animais
+                </a>
 
-      <div class="pet-card">
-        <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=500&q=80" alt="Cão Bob">
-        <div class="pet-info">
-          <h3>Bob</h3>
-          <p>Macho • 4 anos • Porte Grande</p><br>
-          <button class="btn" onclick="alert('Obrigado pelo interesse! Entre em contato para agendar uma visita.')">Tenho Interesse</button>
-        </div>
-      </div>
-    </div>
-  </section>
+                <a href="login.html">
+                    Login
+                </a>
 
-  <section id="doacoes" class="page">
-    <div class="donation-container">
-      <h2>Faça uma Doação</h2>
-      <p class="subtitle">Sua contribuição ajuda a manter a alimentação e os tratamentos veterinários.</p>
+            </nav>
 
-      <div class="pix-box">
-        <p><strong>Chave PIX (CNPJ):</strong></p>
-        <p class="pix-key">00.000.000/0001-00</p>
-      </div>
-
-      <form onsubmit="alert('Obrigado pelo apoio!'); return false;">
-        <div class="form-group">
-          <label for="valor">Valor da doação (R$):</label>
-          <input type="number" id="valor" placeholder="Ex: 50" required>
-        </div>
-        <button type="submit" class="btn full">Confirmar Doação</button>
-      </form>
-    </div>
-  </section>
-
-  <section id="login" class="page">
-    <div class="login-container">
-      <h2>Área Administrativa</h2>
-      <p class="subtitle">Entre com sua conta para acessar o sistema.</p>
-
-      <form id="loginForm">
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" placeholder="admin@patinhas.com" required>
         </div>
 
-        <div class="form-group">
-          <label for="password">Senha</label>
-          <input type="password" id="password" placeholder="Digite sua senha" required>
+    </header>
+
+
+    <!-- BANNER PRINCIPAL -->
+    <section class="hero">
+
+        <div class="container hero-grid">
+
+            <div>
+
+                <span class="eyebrow light">
+                    ONG PATINHAS & AMIGOS
+                </span>
+
+                <h1>
+                    Cuidado, proteção e novos começos.
+                </h1>
+
+                <p>
+                    Conectamos pessoas aos animais que precisam
+                    de uma nova oportunidade, enquanto organizamos
+                    o cuidado diário da ONG.
+                </p>
+
+                <div class="actions">
+
+                    <a class="btn light" href="adocao.html">
+                        Conhecer animais
+                    </a>
+
+                    <a class="btn outline-light" href="doacao.html">
+                        Apoiar a ONG
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <span class="eyebrow">
+                    EM NÚMEROS
+                </span>
+
+                <div class="big">
+                    24
+                </div>
+
+                <p>
+                    animais atualmente acompanhados
+                </p>
+
+                <hr>
+
+                <div class="mini-stats">
+
+                    <div>
+                        <b>18</b>
+                        <small>disponíveis</small>
+                    </div>
+
+                    <div>
+                        <b>04</b>
+                        <small>tratamento</small>
+                    </div>
+
+                    <div>
+                        <b>02</b>
+                        <small>adaptação</small>
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <p id="loginError" class="error-message"></p>
+    </section>
 
-        <button type="submit" class="btn full">Entrar</button>
-      </form>
 
-      <div class="demo-login">
-        <strong>Acesso de teste</strong>
-        <p>E-mail: admin@patinhas.com</p>
-        <p>Senha: 1234</p>
-      </div>
-    </div>
-  </section>
+    <!-- COMO FUNCIONA -->
+    <section class="section">
 
-  <!-- ÁREA ADMINISTRATIVA -->
-  <section id="dashboard" class="page protected">
-    <div class="page-header">
-      <div>
-        <h2>Dashboard</h2>
-        <p class="subtitle">Visão geral da ONG Patinhas e Amigos.</p>
-      </div>
-    </div>
+        <div class="container">
 
-    <div class="stats-grid">
-      <div class="stat-card">
-        <span>🐶</span>
-        <div><strong>24</strong><p>Animais cadastrados</p></div>
-      </div>
-      <div class="stat-card">
-        <span>📦</span>
-        <div><strong>87</strong><p>Itens em estoque</p></div>
-      </div>
-      <div class="stat-card">
-        <span>📅</span>
-        <div><strong>12</strong><p>Agendas hoje</p></div>
-      </div>
-      <div class="stat-card">
-        <span>👥</span>
-        <div><strong>8</strong><p>Funcionários</p></div>
-      </div>
-    </div>
+            <div class="section-head">
 
-    <div class="dashboard-grid">
-      <div class="panel">
-        <h3>Próximos compromissos</h3>
-        <div class="list-item"><strong>14:00</strong><span>Consulta veterinária - Thor</span></div>
-        <div class="list-item"><strong>15:30</strong><span>Visita para adoção - Luna</span></div>
-        <div class="list-item"><strong>17:00</strong><span>Banho e tosa - Bob</span></div>
-      </div>
+                <div>
 
-      <div class="panel">
-        <h3>Avisos do sistema</h3>
-        <div class="alert-box warning">⚠️ Estoque de ração está baixo.</div>
-        <div class="alert-box">ℹ️ Existem 3 animais aguardando avaliação.</div>
-      </div>
-    </div>
-  </section>
+                    <span class="eyebrow">
+                        COMO TRABALHAMOS
+                    </span>
 
-  <section id="estoque" class="page protected">
-    <div class="page-header">
-      <div>
-        <h2>Estoque</h2>
-        <p class="subtitle">Controle de alimentos, medicamentos e materiais.</p>
-      </div>
-      <button class="btn" onclick="alert('Aqui você poderá cadastrar um novo item.')">+ Novo item</button>
-    </div>
+                    <h2>
+                        Um cuidado que vai além da adoção
+                    </h2>
 
-    <div class="panel">
-      <table>
-        <thead>
-          <tr><th>Produto</th><th>Categoria</th><th>Quantidade</th><th>Status</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Ração para cães</td><td>Alimentação</td><td>8 sacos</td><td><span class="badge ok">Normal</span></td></tr>
-          <tr><td>Ração para gatos</td><td>Alimentação</td><td>3 sacos</td><td><span class="badge warning">Baixo</span></td></tr>
-          <tr><td>Antibiótico veterinário</td><td>Medicamento</td><td>12 unidades</td><td><span class="badge ok">Normal</span></td></tr>
-          <tr><td>Luvas descartáveis</td><td>Material</td><td>2 caixas</td><td><span class="badge warning">Baixo</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+                </div>
 
-  <section id="animais" class="page protected">
-    <div class="page-header">
-      <div>
-        <h2>Animais</h2>
-        <p class="subtitle">Cadastro e acompanhamento dos animais.</p>
-      </div>
-      <button class="btn" onclick="alert('Aqui você poderá cadastrar um novo animal.')">+ Novo animal</button>
-    </div>
+                <p>
+                    Do resgate ao acompanhamento, cada etapa é
+                    organizada para que os animais recebam atenção
+                    e encontrem novas famílias.
+                </p>
 
-    <div class="pet-grid admin-pets">
-      <div class="admin-pet-card"><div class="animal-icon">🐶</div><h3>Thor</h3><p>Canino • 2 anos</p><span class="badge ok">Disponível</span></div>
-      <div class="admin-pet-card"><div class="animal-icon">🐱</div><h3>Luna</h3><p>Felino • 1 ano</p><span class="badge ok">Disponível</span></div>
-      <div class="admin-pet-card"><div class="animal-icon">🐕</div><h3>Bob</h3><p>Canino • 4 anos</p><span class="badge blue">Em tratamento</span></div>
-      <div class="admin-pet-card"><div class="animal-icon">🐈</div><h3>Mia</h3><p>Felino • 3 anos</p><span class="badge gray">Adotada</span></div>
-    </div>
-  </section>
+            </div>
 
-  <section id="agendas" class="page protected">
-    <div class="page-header">
-      <div>
-        <h2>Agendas</h2>
-        <p class="subtitle">Consultas, visitas e compromissos.</p>
-      </div>
-      <button class="btn" onclick="alert('Aqui você poderá cadastrar um novo compromisso.')">+ Novo compromisso</button>
-    </div>
 
-    <div class="panel">
-      <table>
-        <thead><tr><th>Horário</th><th>Animal</th><th>Tipo</th><th>Responsável</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>14:00</td><td>Thor</td><td>Veterinário</td><td>Dr. Carlos</td><td><span class="badge blue">Agendado</span></td></tr>
-          <tr><td>15:30</td><td>Luna</td><td>Visita</td><td>Mariana</td><td><span class="badge ok">Confirmado</span></td></tr>
-          <tr><td>17:00</td><td>Bob</td><td>Banho e tosa</td><td>Rafael</td><td><span class="badge blue">Agendado</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+            <div class="features">
 
-  <section id="funcionarios" class="page protected">
-    <div class="page-header">
-      <div>
-        <h2>Funcionários</h2>
-        <p class="subtitle">Equipe responsável pela ONG.</p>
-      </div>
-      <button class="btn" onclick="alert('Aqui você poderá cadastrar um novo funcionário.')">+ Novo funcionário</button>
-    </div>
+                <article class="feature">
 
-    <div class="panel">
-      <table>
-        <thead><tr><th>Nome</th><th>Cargo</th><th>Contato</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>Mariana Souza</td><td>Administradora</td><td>mariana@patinhas.com</td><td><span class="badge ok">Ativo</span></td></tr>
-          <tr><td>Rafael Lima</td><td>Cuidador</td><td>rafael@patinhas.com</td><td><span class="badge ok">Ativo</span></td></tr>
-          <tr><td>Dr. Carlos Mendes</td><td>Veterinário</td><td>carlos@patinhas.com</td><td><span class="badge ok">Ativo</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+                    <i>01</i>
 
-</main>
+                    <h3>
+                        Resgate e acolhimento
+                    </h3>
 
-<footer>
-  <p>&copy; 2026 ONG Patinhas e Amigos - Todos os direitos reservados.</p>
-</footer>
+                    <p>
+                        Cadastro, identificação, avaliação inicial
+                        e definição das necessidades.
+                    </p>
 
-<script src="script.js"></script>
+                </article>
+
+
+                <article class="feature">
+
+                    <i>02</i>
+
+                    <h3>
+                        Tratamento e rotina
+                    </h3>
+
+                    <p>
+                        Controle de consultas, alimentação,
+                        medicamentos e atividades.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <i>03</i>
+
+                    <h3>
+                        Adoção responsável
+                    </h3>
+
+                    <p>
+                        Organização dos interessados, visitas
+                        e acompanhamento do processo.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div>
+
+                <b>
+                    Patinhas & Amigos
+                </b>
+
+                <br>
+
+                <small>
+                    Proteção, cuidado e novas histórias.
+                </small>
+
+            </div>
+
+            <small>
+                Projeto acadêmico · 2026
+            </small>
+
+        </div>
+
+    </footer>
+
 </body>
+
 </html>
