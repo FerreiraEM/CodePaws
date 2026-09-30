@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Patinhas & Amigos | Área Restrita
+    </title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js"></script>
+
+</head>
+
+<body>
+
+
+    <header class="public-header">
+
+        <div class="container nav">
+
+            <a class="brand" href="index.html">
+
+                <b>P</b>
+
+                <span>
+                    Patinhas
+                    <small>& Amigos</small>
+                </span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="index.html">
+                    Início
+                </a>
+
+                <a href="adocao.html">
+                    Adoção
+                </a>
+
+                <a href="doacao.html">
+                    Doações
+                </a>
+
+                <a href="animais.html">
+                    Animais
+                </a>
+
+                <a class="active" href="login.html">
+                    Área restrita
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main class="login-page">
+
+        <div class="login-card">
+
+            <span class="eyebrow">
+                SISTEMA INTERNO
+            </span>
+
+            <h1>
+                Gestão Patinhas
+            </h1>
+
+            <p>
+                Acesse a área administrativa da ONG.
+            </p>
+
+
+            <label>
+
+                E-mail
+
+                <input
+                    class="input"
+                    id="email"
+                    type="email"
+                    placeholder="admin@patinhas.com">
+
+            </label>
+
+
+            <label>
+
+                Senha
+
+                <input
+                    class="input"
+                    id="password"
+                    type="password"
+                    placeholder="1234">
+
+            </label>
+
+
+            <button
+                class="btn primary full"
+                style="margin-top:18px"
+                onclick="login()">
+
+                Entrar no sistema
+
+            </button>
+
+
+            <div class="demo">
+
+                <b>
+                    Acesso de demonstração
+                </b>
+
+                <br>
+
+                E-mail: admin@patinhas.com
+
+                <br>
+
+                Senha: 1234
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        function login() {
+
+            const email =
+                document.getElementById("email").value;
+
+            const password =
+                document.getElementById("password").value;
+
+
+            if (
+                email === "admin@patinhas.com" &&
+                password === "1234"
+            ) {
+
+                window.location.href =
+                    "dashboard.html";
+
+            } else {
+
+                alert(
+                    "E-mail ou senha incorretos."
+                );
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
