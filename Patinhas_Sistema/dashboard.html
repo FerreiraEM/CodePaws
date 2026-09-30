@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patinhas & Amigos | Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+</head>
+
+<body class="admin-body">
+
+    <!-- =====================================================
+         ÁREA ADMINISTRATIVA
+         ===================================================== -->
+
+    <div class="admin-layout">
+
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+
+                <div class="admin-brand-icon">
+                    P
+                </div>
+
+                <div>
+                    <strong>Patinhas & Amigos</strong>
+                    <small>Área administrativa</small>
+                </div>
+
+            </div>
+
+
+            <div class="admin-menu-title">
+                MENU PRINCIPAL
+            </div>
+
+
+            <nav class="admin-menu">
+
+                <a
+                    href="dashboard.html"
+                    class="admin-menu-link active">
+
+                    <span>▦</span>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+
+                <a
+                    href="gestao-animais.html"
+                    class="admin-menu-link">
+
+                    <span>🐾</span>
+
+                    <span>Animais</span>
+
+                </a>
+
+
+                <a
+                    href="estoque.html"
+                    class="admin-menu-link">
+
+                    <span>▤</span>
+
+                    <span>Estoque</span>
+
+                </a>
+
+
+                <a
+                    href="agenda.html"
+                    class="admin-menu-link">
+
+                    <span>▣</span>
+
+                    <span>Agenda</span>
+
+                </a>
+
+
+                <a
+                    href="funcionarios.html"
+                    class="admin-menu-link">
+
+                    <span>♙</span>
+
+                    <span>Funcionários</span>
+
+                </a>
+
+
+                <a
+                    href="gestao-adocoes.html"
+                    class="admin-menu-link">
+
+                    <span>♡</span>
+
+                    <span>Adoções</span>
+
+                </a>
+
+
+                <a
+                    href="relatorios.html"
+                    class="admin-menu-link">
+
+                    <span>▥</span>
+
+                    <span>Relatórios</span>
+
+                </a>
+
+            </nav>
+
+
+            <div class="admin-sidebar-bottom">
+
+                <a
+                    href="index.html"
+                    class="admin-menu-link">
+
+                    <span>←</span>
+
+                    <span>Site público</span>
+
+                </a>
+
+
+                <a
+                    href="#"
+                    class="admin-menu-link logout"
+                    onclick="fazerLogout(); return false;">
+
+                    <span>↪</span>
+
+                    <span>Sair</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =================================================
+             CONTEÚDO
+             ================================================= -->
+
+        <main class="admin-main">
+
+
+            <!-- TOPO -->
+
+            <header class="admin-topbar">
+
+                <div>
+
+                    <span class="admin-breadcrumb">
+                        Administração / Dashboard
+                    </span>
+
+                </div>
+
+
+                <div class="admin-user">
+
+                    <div class="admin-user-avatar">
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong>Administrador</strong>
+
+                        <small>
+                            Acesso administrativo
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- CONTEÚDO DO DASHBOARD -->
+
+            <div class="admin-content">
+
+
+                <!-- TÍTULO -->
+
+                <div class="admin-page-title">
+
+                    <div>
+
+                        <span class="admin-label">
+                            VISÃO GERAL
+                        </span>
+
+                        <h1>
+                            Dashboard
+                        </h1>
+
+                        <p>
+                            Acompanhe as principais informações
+                            da ONG em um único lugar.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     INDICADORES
+                     ================================================= -->
+
+                <section class="dashboard-stats">
+
+
+                    <div class="dashboard-stat">
+
+                        <div class="stat-header">
+
+                            <span>
+                                Animais cadastrados
+                            </span>
+
+                            <span class="stat-symbol">
+                                🐾
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            24
+                        </strong>
+
+                        <small>
+                            Animais registrados no sistema
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="dashboard-stat">
+
+                        <div class="stat-header">
+
+                            <span>
+                                Adoções
+                            </span>
+
+                            <span class="stat-symbol">
+                                ♡
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            12
+                        </strong>
+
+                        <small>
+                            Adoções realizadas e em andamento
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="dashboard-stat">
+
+                        <div class="stat-header">
+
+                            <span>
+                                Itens em estoque
+                            </span>
+
+                            <span class="stat-symbol">
+                                ▤
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            38
+                        </strong>
+
+                        <small>
+                            Itens registrados atualmente
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="dashboard-stat">
+
+                        <div class="stat-header">
+
+                            <span>
+                                Compromissos
+                            </span>
+
+                            <span class="stat-symbol">
+                                ▣
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            7
+                        </strong>
+
+                        <small>
+                            Compromissos próximos
+                        </small>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     LINHA PRINCIPAL
+                     ================================================= -->
+
+                <section class="dashboard-columns">
+
+
+                    <!-- ATIVIDADES -->
+
+                    <div class="admin-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="admin-label">
+                                    SISTEMA
+                                </span>
+
+                                <h2>
+                                    Atividades recentes
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="activity-list">
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-marker">
+                                    ✓
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Adoção registrada
+                                    </strong>
+
+                                    <p>
+                                        Uma nova adoção foi registrada
+                                        no sistema.
+                                    </p>
+
+                                    <small>
+                                        Hoje
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-marker">
+                                    +
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Animal cadastrado
+                                    </strong>
+
+                                    <p>
+                                        Um novo animal foi adicionado
+                                        ao cadastro.
+                                    </p>
+
+                                    <small>
+                                        Hoje
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-marker">
+                                    ↻
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Estoque atualizado
+                                    </strong>
+
+                                    <p>
+                                        Quantidade de produtos atualizada
+                                        no estoque.
+                                    </p>
+
+                                    <small>
+                                        Ontem
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-marker">
+                                    +
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Funcionário cadastrado
+                                    </strong>
+
+                                    <p>
+                                        Um novo funcionário foi incluído
+                                        no sistema.
+                                    </p>
+
+                                    <small>
+                                        Ontem
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- AGENDA -->
+
+                    <div class="admin-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="admin-label">
+                                    PRÓXIMOS EVENTOS
+                                </span>
+
+                                <h2>
+                                    Agenda
+                                </h2>
+
+                            </div>
+
+                            <a href="agenda.html">
+                                Ver agenda
+                            </a>
+
+                        </div>
+
+
+                        <div class="agenda-list">
+
+
+                            <div class="agenda-item">
+
+                                <div class="agenda-date">
+
+                                    <strong>
+                                        30
+                                    </strong>
+
+                                    <small>
+                                        SET
+                                    </small>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Consulta veterinária
+                                    </strong>
+
+                                    <p>
+                                        14:00 · Clínica veterinária
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="agenda-item">
+
+                                <div class="agenda-date">
+
+                                    <strong>
+                                        01
+                                    </strong>
+
+                                    <small>
+                                        OUT
+                                    </small>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Reunião da equipe
+                                    </strong>
+
+                                    <p>
+                                        16:00 · Sala administrativa
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="agenda-item">
+
+                                <div class="agenda-date">
+
+                                    <strong>
+                                        03
+                                    </strong>
+
+                                    <small>
+                                        OUT
+                                    </small>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Evento de adoção
+                                    </strong>
+
+                                    <p>
+                                        10:00 · Abrigo
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     ACESSOS RÁPIDOS
+                     ================================================= -->
+
+                <section class="quick-section">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="admin-label">
+                                NAVEGAÇÃO
+                            </span>
+
+                            <h2>
+                                Acessos rápidos
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-grid">
+
+
+                        <a
+                            href="gestao-animais.html"
+                            class="quick-card">
+
+                            <span>🐾</span>
+
+                            <div>
+
+                                <strong>
+                                    Gestão de animais
+                                </strong>
+
+                                <small>
+                                    Cadastrar e gerenciar animais
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            href="estoque.html"
+                            class="quick-card">
+
+                            <span>▤</span>
+
+                            <div>
+
+                                <strong>
+                                    Controle de estoque
+                                </strong>
+
+                                <small>
+                                    Produtos e materiais
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            href="agenda.html"
+                            class="quick-card">
+
+                            <span>▣</span>
+
+                            <div>
+
+                                <strong>
+                                    Agenda
+                                </strong>
+
+                                <small>
+                                    Consultas e compromissos
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            href="relatorios.html"
+                            class="quick-card">
+
+                            <span>▥</span>
+
+                            <div>
+
+                                <strong>
+                                    Relatórios
+                                </strong>
+
+                                <small>
+                                    Indicadores e informações
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+
+            <!-- RODAPÉ -->
+
+            <footer class="admin-footer">
+
+                <span>
+                    © 2026 Patinhas & Amigos
+                </span>
+
+                <span>
+                    Sistema administrativo
+                </span>
+
+            </footer>
+
+
+        </main>
+
+    </div>
+
+
+    <script>
+        verificarLogin();
+    </script>
+
+</body>
+
+</html>
