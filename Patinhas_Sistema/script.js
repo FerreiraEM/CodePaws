@@ -1,51 +1,47 @@
-// ========================================
-// PATINHAS & AMIGOS
-// JavaScript principal
-// ========================================
-
-
-// ========================================
+// =====================================================
 // LOGIN
-// ========================================
+// =====================================================
 
-function fazerLogin() {
+function fazerLogin(event) {
 
-    const email = document.getElementById("email");
-    const senha = document.getElementById("password");
-
-    // Verifica se os campos existem
-    if (!email || !senha) {
-        return;
-    }
-
-    const emailDigitado = email.value.trim();
-    const senhaDigitada = senha.value.trim();
+    // Impede o formulário de atualizar a página
+    event.preventDefault();
 
 
-    // Dados de demonstração
+    // Pega os valores digitados
+    const email = document.getElementById("email").value;
+
+    const senha = document.getElementById("password").value;
+
+
+    // Dados de acesso do administrador
     const emailCorreto = "admin@patinhas.com";
+
     const senhaCorreta = "1234";
 
 
+    // Verifica os dados
     if (
-        emailDigitado === emailCorreto &&
-        senhaDigitada === senhaCorreta
+        email === emailCorreto &&
+        senha === senhaCorreta
     ) {
 
-        // Guarda a informação de que o usuário entrou
+        // Guarda que o usuário está logado
         localStorage.setItem(
             "usuarioLogado",
             "true"
         );
 
-        // Vai para outra tela
-        window.location.href =
-            "dashboard.html";
+
+        // Vai para o Dashboard
+        window.location.href = "dashboard.html";
+
 
     } else {
 
+        // Dados incorretos
         alert(
-            "E-mail ou senha incorretos."
+            "E-mail ou senha incorretos!"
         );
 
     }
@@ -53,25 +49,10 @@ function fazerLogin() {
 }
 
 
-// ========================================
-// LOGOUT
-// ========================================
 
-function fazerLogout() {
-
-    localStorage.removeItem(
-        "usuarioLogado"
-    );
-
-    window.location.href =
-        "index.html";
-
-}
-
-
-// ========================================
+// =====================================================
 // VERIFICAR LOGIN
-// ========================================
+// =====================================================
 
 function verificarLogin() {
 
@@ -79,59 +60,78 @@ function verificarLogin() {
         localStorage.getItem("usuarioLogado");
 
 
-    // Se a página for administrativa
-    // e o usuário não estiver logado,
-    // volta para o login.
+    // Se não estiver logado,
+    // volta para a tela de login
 
-    if (
-        usuarioLogado !== "true"
-    ) {
+    if (usuarioLogado !== "true") {
 
-        window.location.href =
-            "login.html";
+        window.location.href = "login.html";
 
     }
 
 }
 
 
-// ========================================
+
+// =====================================================
+// SAIR DA CONTA
+// =====================================================
+
+function fazerLogout() {
+
+    // Remove o login salvo
+    localStorage.removeItem(
+        "usuarioLogado"
+    );
+
+
+    // Volta para a tela de login
+    window.location.href = "login.html";
+
+}
+
+
+
+// =====================================================
 // INTERESSE EM ADOÇÃO
-// ========================================
+// =====================================================
 
 function demonstrarInteresse(nomeAnimal) {
 
     alert(
-        "Seu interesse em " +
+        "Obrigado pelo interesse em " +
         nomeAnimal +
-        " foi registrado!"
+        "!\n\n" +
+        "Entre em contato com a ONG para " +
+        "agendar uma visita."
     );
 
 }
 
 
-// ========================================
+
+// =====================================================
 // DOAÇÃO
-// ========================================
+// =====================================================
 
 function realizarDoacao() {
 
-    const campoValor =
-        document.getElementById("valorDoacao");
+    const campo =
+        document.getElementById("valor");
 
 
-    if (!campoValor) {
+    if (!campo) {
         return;
     }
 
 
     const valor =
-        campoValor.value;
+        Number(campo.value);
 
 
     if (
-        valor === "" ||
-        Number(valor) <= 0
+        campo.value === "" ||
+        valor <= 0
     ) {
 
         alert(
@@ -144,22 +144,23 @@ function realizarDoacao() {
 
 
     alert(
-        "Doação de R$ " +
-        Number(valor).toFixed(2).replace(".", ",") +
-        " registrada no protótipo!"
+        "Obrigado pela sua doação de R$ " +
+        valor.toFixed(2) +
+        "!"
     );
 
 }
 
 
-// ========================================
+
+// =====================================================
 // FILTRO DE ANIMAIS
-// ========================================
+// =====================================================
 
 function filtrarAnimais() {
 
     const campo =
-        document.getElementById("buscarAnimal");
+        document.getElementById("filtroAnimais");
 
 
     if (!campo) {
@@ -167,33 +168,29 @@ function filtrarAnimais() {
     }
 
 
-    const pesquisa =
+    const texto =
         campo.value.toLowerCase();
 
 
     const animais =
-        document.querySelectorAll(
-            ".animal-card"
-        );
+        document.querySelectorAll(".pet-card");
 
 
     animais.forEach(function(animal) {
 
-        const texto =
+        const conteudo =
             animal.innerText.toLowerCase();
 
 
         if (
-            texto.includes(pesquisa)
+            conteudo.includes(texto)
         ) {
 
-            animal.style.display =
-                "";
+            animal.style.display = "";
 
         } else {
 
-            animal.style.display =
-                "none";
+            animal.style.display = "none";
 
         }
 
@@ -201,37 +198,66 @@ function filtrarAnimais() {
 
 }
 
+// =====================================================
+// FILTRO DO ESTOQUE
+// =====================================================
 
-// ========================================
-// FILTROS POR CATEGORIA
-// ========================================
+function filtrarEstoque() {
 
-function filtrarCategoria(categoria) {
+    const busca = document
+        .getElementById("buscaEstoque")
+        .value
+        .toLowerCase();
 
-    const animais =
-        document.querySelectorAll(
-            ".animal-card"
-        );
+    const categoria = document
+        .getElementById("categoriaEstoque")
+        .value
+        .toLowerCase();
 
-
-    animais.forEach(function(animal) {
-
-        const tipo =
-            animal.dataset.tipo;
+    const linhas = document
+        .querySelectorAll("#tabelaEstoque tr");
 
 
+    linhas.forEach(function(linha) {
+
+        const produto = linha
+            .querySelector("td:nth-child(1)")
+            .innerText
+            .toLowerCase();
+
+        const categoriaProduto = linha
+            .querySelector("td:nth-child(2)")
+            .innerText
+            .toLowerCase();
+
+
+        // Verifica se o nome corresponde à busca
+        const correspondeBusca =
+            produto.includes(busca);
+
+
+        // Verifica a categoria
+        let correspondeCategoria = true;
+
+        if (categoria !== "") {
+
+            correspondeCategoria =
+                categoriaProduto.includes(categoria);
+
+        }
+
+
+        // Decide se a linha aparece
         if (
-            categoria === "todos" ||
-            tipo === categoria
+            correspondeBusca &&
+            correspondeCategoria
         ) {
 
-            animal.style.display =
-                "";
+            linha.style.display = "";
 
         } else {
 
-            animal.style.display =
-                "none";
+            linha.style.display = "none";
 
         }
 
@@ -239,246 +265,129 @@ function filtrarCategoria(categoria) {
 
 }
 
+// =====================================================
+// TELA DE INTERESSE EM ADOÇÃO
+// =====================================================
 
-// ========================================
-// MODAL
-// ========================================
+function carregarAnimalInteresse() {
 
-function abrirModal(id) {
+    const parametros =
+        new URLSearchParams(window.location.search);
 
-    const modal =
-        document.getElementById(id);
+    const animal =
+        parametros.get("animal");
 
-
-    if (modal) {
-
-        modal.classList.remove(
-            "hidden"
-        );
-
-    }
-
-}
-
-
-function fecharModal(id) {
-
-    const modal =
-        document.getElementById(id);
-
-
-    if (modal) {
-
-        modal.classList.add(
-            "hidden"
-        );
-
-    }
-
-}
-
-
-// ========================================
-// FECHAR MODAL CLICANDO FORA
-// ========================================
-
-document.addEventListener(
-    "click",
-    function(event) {
-
-        if (
-            event.target.classList.contains(
-                "modal"
-            )
-        ) {
-
-            event.target.classList.add(
-                "hidden"
-            );
-
-        }
-
-    }
-);
-
-
-// ========================================
-// TECLA ESC
-// ========================================
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            const modais =
-                document.querySelectorAll(
-                    ".modal"
-                );
-
-
-            modais.forEach(function(modal) {
-
-                modal.classList.add(
-                    "hidden"
-                );
-
-            });
-
-        }
-
-    }
-);
-
-
-// ========================================
-// MENSAGEM DE SUCESSO
-// ========================================
-
-function mostrarMensagem(mensagem) {
-
-    alert(mensagem);
-
-}
-
-
-// ========================================
-// CADASTRO DE ANIMAL
-// ========================================
-
-function cadastrarAnimal() {
 
     const nome =
-        document.getElementById("nomeAnimal");
+        document.getElementById("interesseNome");
 
-    const especie =
-        document.getElementById("especieAnimal");
+    const descricao =
+        document.getElementById("interesseDescricao");
+
+    const caracteristicas =
+        document.getElementById("interesseCaracteristicas");
+
+    const imagem =
+        document.getElementById("interesseImagem");
 
 
-    if (!nome || !especie) {
+    if (!animal || !nome || !descricao) {
         return;
     }
 
 
-    if (
-        nome.value.trim() === "" ||
-        especie.value.trim() === ""
-    ) {
+    if (animal === "thor") {
 
-        alert(
-            "Preencha os dados do animal."
-        );
+        nome.innerText = "Thor";
 
-        return;
+        descricao.innerText =
+            "Macho · 2 anos · Porte médio";
+
+        caracteristicas.innerText =
+            "Sociável · Vacinado";
+
+        imagem.classList.add("thor");
 
     }
 
 
-    alert(
-        "Animal " +
-        nome.value +
-        " cadastrado com sucesso!"
-    );
+    else if (animal === "luna") {
+
+        nome.innerText = "Luna";
+
+        descricao.innerText =
+            "Fêmea · 1 ano · Porte pequeno";
+
+        caracteristicas.innerText =
+            "Tranquila · Vacinada";
+
+        imagem.classList.add("luna");
+
+    }
 
 
-    nome.value = "";
-    especie.value = "";
+    else if (animal === "mel") {
+
+        nome.innerText = "Mel";
+
+        descricao.innerText =
+            "Fêmea · 3 anos · Porte pequeno";
+
+        caracteristicas.innerText =
+            "Carinhosa · Vacinada";
+
+        imagem.classList.add("mel");
+
+    }
 
 }
 
 
-// ========================================
-// CADASTRO DE ESTOQUE
-// ========================================
+// =====================================================
+// ENVIAR INTERESSE
+// =====================================================
 
-function cadastrarEstoque() {
+function enviarInteresse(event) {
 
-    const produto =
-        document.getElementById("produto");
+    event.preventDefault();
 
 
-    if (!produto) {
-        return;
+    const nome =
+        document.getElementById("nomeInteresse").value;
+
+
+    const parametros =
+        new URLSearchParams(window.location.search);
+
+    const animal =
+        parametros.get("animal");
+
+
+    let nomeAnimal = "animal";
+
+
+    if (animal === "thor") {
+        nomeAnimal = "Thor";
     }
 
-
-    if (
-        produto.value.trim() === ""
-    ) {
-
-        alert(
-            "Informe o nome do produto."
-        );
-
-        return;
-
+    else if (animal === "luna") {
+        nomeAnimal = "Luna";
     }
 
-
-    alert(
-        "Produto cadastrado com sucesso!"
-    );
-
-
-    produto.value = "";
-
-}
-
-
-// ========================================
-// NOVO COMPROMISSO
-// ========================================
-
-function cadastrarCompromisso() {
-
-    const compromisso =
-        document.getElementById(
-            "compromisso"
-        );
-
-
-    if (!compromisso) {
-        return;
-    }
-
-
-    if (
-        compromisso.value.trim() === ""
-    ) {
-
-        alert(
-            "Informe o compromisso."
-        );
-
-        return;
-
+    else if (animal === "mel") {
+        nomeAnimal = "Mel";
     }
 
 
     alert(
-        "Compromisso cadastrado com sucesso!"
+        "Interesse enviado com sucesso!\n\n" +
+        "Obrigado, " + nome + "!\n\n" +
+        "A ONG recebeu seu interesse na adoção de " +
+        nomeAnimal +
+        " e poderá entrar em contato com você."
     );
 
 
-    compromisso.value = "";
+    window.location.href = "adocao.html";
 
 }
-
-
-// ========================================
-// CARREGAMENTO DA PÁGINA
-// ========================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        console.log(
-            "Patinhas & Amigos carregado."
-        );
-
-    }
-);
