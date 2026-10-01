@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patinhas & Amigos | Gestão de Animais</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+
+</head>
+
+<body class="admin-body">
+
+    <div class="admin-layout">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+
+                <div class="admin-brand-icon">
+                    P
+                </div>
+
+                <div>
+
+                    <strong>
+                        Patinhas & Amigos
+                    </strong>
+
+                    <small>
+                        Área administrativa
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-menu-title">
+                MENU PRINCIPAL
+            </div>
+
+
+            <nav class="admin-menu">
+
+                <a
+                    href="dashboard.html"
+                    class="admin-menu-link">
+
+                    <span>▦</span>
+                    <span>Dashboard</span>
+
+                </a>
+
+
+                <a
+                    href="animais-adi.html"
+                    class="admin-menu-link active">
+
+                    <span>🐾</span>
+                    <span>Animais</span>
+
+                </a>
+
+
+                <a
+                    href="estoque.html"
+                    class="admin-menu-link">
+
+                    <span>▤</span>
+                    <span>Estoque</span>
+
+                </a>
+
+
+                <a
+                    href="agenda.html"
+                    class="admin-menu-link">
+
+                    <span>▣</span>
+                    <span>Agenda</span>
+
+                </a>
+
+
+                <a
+                    href="funcionarios.html"
+                    class="admin-menu-link">
+
+                    <span>♙</span>
+                    <span>Funcionários</span>
+
+                </a>
+
+
+                <a
+                    href="gestao-adocoes.html"
+                    class="admin-menu-link">
+
+                    <span>♡</span>
+                    <span>Adoções</span>
+
+                </a>
+
+
+                <a
+                    href="relatorios.html"
+                    class="admin-menu-link">
+
+                    <span>▥</span>
+                    <span>Relatórios</span>
+
+                </a>
+
+            </nav>
+
+
+            <div class="admin-sidebar-bottom">
+
+                <a
+                    href="index.html"
+                    class="admin-menu-link">
+
+                    <span>←</span>
+                    <span>Site público</span>
+
+                </a>
+
+
+                <a
+                    href="#"
+                    class="admin-menu-link logout"
+                    onclick="fazerLogout(); return false;">
+
+                    <span>↪</span>
+                    <span>Sair</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+
+        <main class="admin-main">
+
+
+            <!-- TOPO -->
+
+            <header class="admin-topbar">
+
+                <div>
+
+                    <span class="admin-breadcrumb">
+                        Administração / Animais
+                    </span>
+
+                </div>
+
+
+                <div class="admin-user">
+
+                    <div class="admin-user-avatar">
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Administrador
+                        </strong>
+
+                        <small>
+                            Acesso administrativo
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- CONTEÚDO -->
+
+            <div class="admin-content">
+
+                <div class="admin-page-title">
+
+                    <div>
+
+                        <span class="admin-label">
+                            GESTÃO DE ANIMAIS
+                        </span>
+
+                        <h1>
+                            Animais
+                        </h1>
+
+                        <p>
+                            Cadastre e gerencie os animais
+                            disponíveis na ONG.
+                        </p>
+
+                    </div>
+
+
+                    <button class="animais-btn">
+                        + Cadastrar animal
+                    </button>
+
+                </div>
+
+
+                <!-- INDICADORES -->
+
+                <section class="animais-stats">
+
+                    <div class="animais-stat">
+
+                        <span>
+                            Total de animais
+                        </span>
+
+                        <strong>
+                            24
+                        </strong>
+
+                        <small>
+                            Animais cadastrados
+                        </small>
+
+                    </div>
+
+
+                    <div class="animais-stat">
+
+                        <span>
+                            Disponíveis
+                        </span>
+
+                        <strong>
+                            15
+                        </strong>
+
+                        <small>
+                            Aguardando adoção
+                        </small>
+
+                    </div>
+
+
+                    <div class="animais-stat">
+
+                        <span>
+                            Em processo de adoção
+                        </span>
+
+                        <strong>
+                            5
+                        </strong>
+
+                        <small>
+                            Adoções em andamento
+                        </small>
+
+                    </div>
+
+
+                    <div class="animais-stat">
+
+                        <span>
+                            Adotados
+                        </span>
+
+                        <strong>
+                            4
+                        </strong>
+
+                        <small>
+                            Adoções concluídas
+                        </small>
+
+                    </div>
+
+                </section>
+
+
+                <!-- FILTROS -->
+
+                <section class="animais-filters">
+
+                    <div>
+
+                        <label for="buscaAnimal">
+                            Buscar animal
+                        </label>
+
+                        <input
+                            type="text"
+                            id="buscaAnimal"
+                            placeholder="Digite o nome do animal...">
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="tipoAnimal">
+                            Tipo
+                        </label>
+
+                        <select id="tipoAnimal">
+
+                            <option value="">
+                                Todos
+                            </option>
+
+                            <option value="cao">
+                                Cães
+                            </option>
+
+                            <option value="gato">
+                                Gatos
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="statusAnimal">
+                            Situação
+                        </label>
+
+                        <select id="statusAnimal">
+
+                            <option value="">
+                                Todas
+                            </option>
+
+                            <option value="disponivel">
+                                Disponível
+                            </option>
+
+                            <option value="processo">
+                                Em processo
+                            </option>
+
+                            <option value="adotado">
+                                Adotado
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </section>
+
+
+                <!-- TABELA -->
+
+                <section class="animais-table-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="admin-label">
+                                ANIMAIS CADASTRADOS
+                            </span>
+
+                            <h2>
+                                Cadastro de animais
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="animais-table-container">
+
+                        <table class="animais-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Animal
+                                    </th>
+
+                                    <th>
+                                        Tipo
+                                    </th>
+
+                                    <th>
+                                        Idade
+                                    </th>
+
+                                    <th>
+                                        Porte
+                                    </th>
+
+                                    <th>
+                                        Situação
+                                    </th>
+
+                                    <th>
+                                        Ações
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            Thor
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        Cão
+                                    </td>
+
+                                    <td>
+                                        2 anos
+                                    </td>
+
+                                    <td>
+                                        Médio
+                                    </td>
+
+                                    <td>
+
+                                        <span class="animal-status status-disponivel">
+                                            Disponível
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <button class="animal-action">
+                                            Editar
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            Luna
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        Gato
+                                    </td>
+
+                                    <td>
+                                        1 ano
+                                    </td>
+
+                                    <td>
+                                        Pequeno
+                                    </td>
+
+                                    <td>
+
+                                        <span class="animal-status status-disponivel">
+                                            Disponível
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <button class="animal-action">
+                                            Editar
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            Mel
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        Gato
+                                    </td>
+
+                                    <td>
+                                        1 ano
+                                    </td>
+
+                                    <td>
+                                        Pequeno
+                                    </td>
+
+                                    <td>
+
+                                        <span class="animal-status status-disponivel">
+                                            Disponível
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <button class="animal-action">
+                                            Editar
+                                        </button>
