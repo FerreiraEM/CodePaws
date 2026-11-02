@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Adoções | Patinhas & Amigos</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .adocoes-page {
+            padding: 2rem;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .adocoes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .adocoes-header h1 {
+            margin-bottom: .4rem;
+            color: #333;
+        }
+
+        .adocoes-header p {
+            color: #888;
+            font-size: .9rem;
+        }
+
+        .adocoes-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .adocao-stat {
+            background: white;
+            padding: 1.4rem;
+            border-radius: 10px;
+            border: 1px solid #e8e8e8;
+        }
+
+        .adocao-stat span {
+            color: #888;
+            font-size: .85rem;
+        }
+
+        .adocao-stat strong {
+            display: block;
+            font-size: 1.8rem;
+            margin-top: .5rem;
+            color: #333;
+        }
+
+        .adocoes-panel {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .adocoes-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .adocoes-filters input,
+        .adocoes-filters select {
+            padding: .75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: .9rem;
+        }
+
+        .adocoes-filters input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .adocoes-filters select {
+            min-width: 170px;
+        }
+
+        .adocoes-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .adocoes-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        .adocoes-table th,
+        .adocoes-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            font-size: .85rem;
+        }
+
+        .adocoes-table th {
+            color: #888;
+            font-weight: 600;
+            background: #fafafa;
+        }
+
+        .adocao-status {
+            display: inline-block;
+            padding: .4rem .7rem;
+            border-radius: 20px;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .status-pendente {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-aprovada {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-recusada {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .adocao-actions {
+            display: flex;
+            gap: .5rem;
+        }
+
+        .adocao-actions button {
+            border: none;
+            padding: .5rem .7rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: .75rem;
+        }
+
+        .btn-aprovar {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .btn-recusar {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn-detalhes {
+            background: #e8eef5;
+            color: #34495e;
+        }
+
+        .adocoes-empty {
+            text-align: center !important;
+            color: #888;
+            padding: 2rem !important;
+        }
+
+        @media (max-width: 900px) {
+            .adocoes-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .adocoes-page {
+                padding: 1.2rem;
+            }
+
+            .adocoes-header {
+                align-items: flex-start;
+            }
+
+            .adocoes-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: .7rem;
+            }
+
+            .adocao-stat {
+                padding: 1rem;
+            }
+
+            .adocoes-panel {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="admin-body">
+
+<div class="admin-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="admin-sidebar">
+
+        <div class="admin-brand">
+            <div class="admin-brand-icon">P</div>
+            <div>
+                <strong>Patinhas & Amigos</strong>
+                <small>Área administrativa</small>
+            </div>
+        </div>
+
+        <div class="admin-menu-title">MENU PRINCIPAL</div>
+
+        <nav class="admin-menu">
+
+            <a href="dashboard.html" class="admin-menu-link">
+                <span>▦</span><span>Dashboard</span>
+            </a>
+
+            <a href="gestao-animais.html" class="admin-menu-link">
+                <span>🐾</span><span>Animais</span>
+            </a>
+
+            <a href="estoque.html" class="admin-menu-link">
+                <span>▤</span><span>Estoque</span>
+            </a>
+
+            <a href="agenda.html" class="admin-menu-link">
+                <span>▣</span><span>Agenda</span>
+            </a>
+
+            <a href="funcionarios.html" class="admin-menu-link">
+                <span>♙</span><span>Funcionários</span>
+            </a>
+
+            <a href="gestao-adocoes.html" class="admin-menu-link active">
+                <span>♡</span><span>Adoções</span>
+            </a>
+
+            <a href="relatorios.html" class="admin-menu-link">
+                <span>▥</span><span>Relatórios</span>
+            </a>
+
+        </nav>
+
+        <div class="admin-sidebar-bottom">
+
+            <a href="index.html" class="admin-menu-link">
+                <span>←</span><span>Site público</span>
+            </a>
+
+            <a href="#" class="admin-menu-link logout"
+               onclick="fazerLogout(); return false;">
+                <span>↪</span><span>Sair</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <main class="admin-main">
+
+        <header class="admin-topbar">
+            <div>
+                <span class="admin-breadcrumb">
+                    Administração / Adoções
+                </span>
+            </div>
+
+            <div class="admin-user">
+                <div class="admin-user-avatar">A</div>
+                <div>
+                    <strong>Administrador</strong>
+                    <small>Acesso administrativo</small>
+                </div>
+            </div>
+        </header>
+
+        <div class="adocoes-page">
+
+            <div class="adocoes-header">
+                <div>
+                    <h1>Gestão de Adoções</h1>
+                    <p>Acompanhe e gerencie as solicitações de adoção.</p>
+                </div>
+            </div>
+
+            <!-- INDICADORES -->
+
+            <div class="adocoes-stats">
+
+                <div class="adocao-stat">
+                    <span>Total de solicitações</span>
+                    <strong id="totalAdocoes">5</strong>
+                </div>
+
+                <div class="adocao-stat">
+                    <span>Pendentes</span>
+                    <strong id="pendentesAdocoes">3</strong>
+                </div>
+
+                <div class="adocao-stat">
+                    <span>Aprovadas</span>
+                    <strong id="aprovadasAdocoes">1</strong>
+                </div>
+
+                <div class="adocao-stat">
+                    <span>Recusadas</span>
+                    <strong id="recusadasAdocoes">1</strong>
+                </div>
+
+            </div>
+
+            <!-- LISTA DE SOLICITAÇÕES -->
+
+            <div class="adocoes-panel">
+
+                <h2>Solicitações de adoção</h2>
+
+                <div class="adocoes-filters">
+                    <input
+                        type="text"
+                        id="buscaAdocao"
+                        placeholder="Buscar por interessado ou animal..."
+                    >
+
+                    <select id="filtroStatus">
+                        <option value="">Todos os status</option>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Aprovada">Aprovada</option>
+                        <option value="Recusada">Recusada</option>
+                    </select>
+                </div>
+
+                <div class="adocoes-table-wrapper">
+
+                    <table class="adocoes-table">
+
+                        <thead>
+                            <tr>
+                                <th>Interessado</th>
+                                <th>Animal</th>
+                                <th>Data</th>
+                                <th>Telefone</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listaAdocoes"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer class="admin-footer">
+            © 2026 Patinhas & Amigos. Todos os direitos reservados.
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+    const solicitacoes = [
+        {
+            id: 1,
+            interessado: "Mariana Oliveira",
+            animal: "Luna",
+            data: "10/10/2026",
+            telefone: "(13) 99999-1234",
+            status: "Pendente"
+        },
+        {
+            id: 2,
+            interessado: "Lucas Ferreira",
+            animal: "Thor",
+            data: "12/10/2026",
+            telefone: "(13) 98888-5678",
+            status: "Aprovada"
+        },
+        {
+            id: 3,
+            interessado: "Ana Carolina Santos",
+            animal: "Mel",
+            data: "15/10/2026",
+            telefone: "(13) 97777-1234",
+            status: "Pendente"
+        },
+        {
+            id: 4,
+            interessado: "Pedro Henrique",
+            animal: "Bob",
+            data: "18/10/2026",
+            telefone: "(13) 96666-9876",
+            status: "Recusada"
+        },
+        {
+            id: 5,
+            interessado: "Juliana Costa",
+            animal: "Nina",
+            data: "20/10/2026",
+            telefone: "(13) 95555-4321",
+            status: "Pendente"
+        }
+    ];
+
+    function atualizarIndicadores() {
+        document.getElementById("totalAdocoes").textContent =
+            solicitacoes.length;
+
+        document.getElementById("pendentesAdocoes").textContent =
+            solicitacoes.filter(a => a.status === "Pendente").length;
+
+        document.getElementById("aprovadasAdocoes").textContent =
+            solicitacoes.filter(a => a.status === "Aprovada").length;
+
+        document.getElementById("recusadasAdocoes").textContent =
+            solicitacoes.filter(a => a.status === "Recusada").length;
+    }
+
+    function mostrarAdocoes() {
+        const busca = document.getElementById("buscaAdocao")
+            .value.toLowerCase();
+
+        const filtro = document.getElementById("filtroStatus").value;
+
+        const lista = document.getElementById("listaAdocoes");
+
+        lista.innerHTML = "";
+
+        const filtradas = solicitacoes.filter(a => {
+            const correspondeBusca =
+                a.interessado.toLowerCase().includes(busca) ||
+                a.animal.toLowerCase().includes(busca);
+
+            const correspondeStatus =
+                filtro === "" || a.status === filtro;
+
+            return correspondeBusca && correspondeStatus;
+        });
+
+        if (filtradas.length === 0) {
+            lista.innerHTML = `
+                <tr>
+                    <td colspan="6" class="adocoes-empty">
+                        Nenhuma solicitação encontrada.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        filtradas.forEach(a => {
+            const classeStatus =
+                a.status === "Pendente" ? "status-pendente" :
+                a.status === "Aprovada" ? "status-aprovada" :
+                "status-recusada";
+
+            lista.innerHTML += `
+                <tr>
+                    <td>${a.interessado}</td>
+                    <td>${a.animal}</td>
+                    <td>${a.data}</td>
+                    <td>${a.telefone}</td>
+                    <td>
+                        <span class="adocao-status ${classeStatus}">
+                            ${a.status}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="adocao-actions">
+                            <button class="btn-detalhes"
+                                onclick="verDetalhes(${a.id})">
+                                Ver
+                            </button>
+
+                            ${
+                                a.status === "Pendente"
+                                ? `
+                                    <button class="btn-aprovar"
+                                        onclick="alterarStatus(${a.id}, 'Aprovada')">
+                                        Aprovar
+                                    </button>
+
+                                    <button class="btn-recusar"
+                                        onclick="alterarStatus(${a.id}, 'Recusada')">
+                                        Recusar
+                                    </button>
+                                `
+                                : ""
+                            }
+                        </div>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    function alterarStatus(id, novoStatus) {
+        const adocao = solicitacoes.find(a => a.id === id);
+
+        if (!adocao) return;
+
+        const confirmar = confirm(
+            `Deseja realmente ${novoStatus.toLowerCase()} a solicitação de ${adocao.interessado}?`
+        );
+
+        if (!confirmar) return;
+
+        adocao.status = novoStatus;
+
+        atualizarIndicadores();
+        mostrarAdocoes();
+    }
+
+    function verDetalhes(id) {
+        const adocao = solicitacoes.find(a => a.id === id);
+
+        if (!adocao) return;
+
+        alert(
+            "Detalhes da solicitação\n\n" +
+            "Interessado: " + adocao.interessado + "\n" +
+            "Animal: " + adocao.animal + "\n" +
+            "Data: " + adocao.data + "\n" +
+            "Telefone: " + adocao.telefone + "\n" +
+            "Status: " + adocao.status
+        );
+    }
+
+    document.getElementById("buscaAdocao")
+        .addEventListener("input", mostrarAdocoes);
+
+    document.getElementById("filtroStatus")
+        .addEventListener("change", mostrarAdocoes);
+
+    atualizarIndicadores();
+    mostrarAdocoes();
+
+    if (typeof verificarLogin === "function") {
+        verificarLogin();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios - Patinhas & Amigos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .relatorios-page {
+            padding: 2rem;
+            max-width: 1500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .relatorios-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .relatorios-heading h1 {
+            font-size: 1.8rem;
+            color: #263b35;
+            margin-bottom: 6px;
+        }
+
+        .relatorios-heading p {
+            color: #777;
+            font-size: 0.95rem;
+        }
+
+        .relatorios-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .relatorios-actions select {
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        .btn-imprimir {
+            border: none;
+            border-radius: 8px;
+            padding: 11px 16px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .btn-imprimir:hover {
+            background: #43a047;
+        }
+
+        .relatorios-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .relatorio-stat {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .stat-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .icon-animais {
+            background: #e8f2ed;
+        }
+
+        .icon-disponiveis {
+            background: #e8eff9;
+        }
+
+        .icon-aprovadas {
+            background: #e8f4e9;
+        }
+
+        .icon-pendentes {
+            background: #fff3df;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #263b35;
+        }
+
+        .stat-description {
+            color: #999;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        .relatorios-charts {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .relatorio-panel {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .panel-heading {
+            margin-bottom: 25px;
+        }
+
+        .panel-heading h2 {
+            color: #263b35;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .panel-heading p {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* Gráfico de barras */
+
+        .grafico-barras {
+            height: 250px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            gap: 12px;
+            padding: 15px 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .barra-item {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .barra-valor {
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .barra {
+            width: 65%;
+            max-width: 42px;
+            min-height: 5px;
+            background: #75a88e;
+            border-radius: 6px 6px 0 0;
+            transition: height 0.3s;
+        }
+
+        .barra:hover {
+            background: #477d68;
+        }
+
+        .barra-mes {
+            color: #888;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+        }
+
+        /* Gráfico de rosca */
+
+        .grafico-situacao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+
+        .grafico-rosca {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #75a88e 0% 50%,
+                #6d91c2 50% 83.33%,
+                #e8b86d 83.33% 100%
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .grafico-rosca::before {
+            content: "";
+            width: 112px;
+            height: 112px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .rosca-centro {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .rosca-centro strong {
+            display: block;
+            font-size: 1.8rem;
+            color: #263b35;
+        }
+
+        .rosca-centro span {
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        .legenda-rosca {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .legenda-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .legenda-cor {
+            width: 11px;
+            height: 11px;
+            border-radius: 3px;
+        }
+
+        .legenda-item strong {
+            color: #333;
+            margin-left: 4px;
+        }
+
+        /* Tabela */
+
+        .relatorio-table-container {
+            overflow-x: auto;
+        }
+
+        .relatorio-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 550px;
+        }
+
+        .relatorio-table th {
+            text-align: left;
+            padding: 14px 12px;
+            background: #f8f9f8;
+            color: #777;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .relatorio-table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .relatorio-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .relatorio-table td strong {
+            color: #263b35;
+        }
+
+        .sem-dados {
+            text-align: center;
+            color: #999;
+            padding: 25px;
+        }
+
+        .relatorios-aviso {
+            margin-top: 20px;
+            padding: 13px 16px;
+            background: #f7f8f7;
+            border-left: 4px solid #75a88e;
+            border-radius: 6px;
+            color: #777;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 1100px) {
+            .relatorios-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .relatorios-charts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .relatorios-page {
+                padding: 1rem;
+            }
+
+            .relatorios-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .relatorios-heading {
+                align-items: flex-start;
+            }
+
+            .relatorios-actions {
+                width: 100%;
+            }
+
+            .relatorios-actions select,
+            .btn-imprimir {
+                flex: 1;
+            }
+
+            .relatorio-panel {
+                padding: 16px;
+            }
+
+            .grafico-situacao {
+                gap: 20px;
+            }
+        }
+
+        @media print {
+            .admin-sidebar,
+            .admin-topbar,
+            .relatorios-actions,
+            .admin-footer {
+                display: none !important;
+            }
+
+            .admin-main {
+                margin: 0 !important;
+                width: 100% !important;
+            }
+
+            .relatorios-page {
+                padding: 0;
+            }
+
+            .relatorio-panel,
+            .relatorio-stat {
+                break-inside: avoid;
+                box-shadow: none;
+            }
+
+            .relatorios-aviso {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body class="admin-body">
+
+<div class="admin-layout">
+
+    
+<!-- SIDEBAR -->
+
+<aside class="admin-sidebar">
+
+    <div class="admin-brand">
+
+        <div class="admin-brand-icon">
+            P
+        </div>
+
+        <div>
+            <strong>Patinhas & Amigos</strong>
+            <small>Área administrativa</small>
+        </div>
+
+    </div>
+
+    <div class="admin-menu-title">
+        MENU PRINCIPAL
+    </div>
+
+    <nav class="admin-menu">
+
+        <a href="dashboard.html" class="admin-menu-link">
+            <span>▦</span>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="gestao-animais.html" class="admin-menu-link">
+            <span>🐾</span>
+            <span>Animais</span>
+        </a>
+
+        <a href="estoque.html" class="admin-menu-link">
+            <span>▤</span>
+            <span>Estoque</span>
+        </a>
+
+        <a href="agenda.html" class="admin-menu-link">
+            <span>▣</span>
+            <span>Agenda</span>
+        </a>
+
+        <a href="funcionarios.html" class="admin-menu-link">
+            <span>♙</span>
+            <span>Funcionários</span>
+        </a>
+
+        <a href="gestao-adocoes.html" class="admin-menu-link">
+            <span>♡</span>
+            <span>Adoções</span>
+        </a>
+
+        <a href="relatorios.html" class="admin-menu-link active">
+            <span>▥</span>
+            <span>Relatórios</span>
+        </a>
+
+    </nav>
+
+    <div class="admin-sidebar-bottom">
+
+        <a href="index.html" class="admin-menu-link">
+            <span>←</span>
+            <span>Site público</span>
+        </a>
+
+        <a href="#" class="admin-menu-link logout"
+           onclick="fazerLogout(); return false;">
+            <span>↪</span>
+            <span>Sair</span>
+        </a>
+
+    </div>
+
+</aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="admin-main">
+
+        <header class="admin-topbar">
+            <div>
+                <div class="admin-breadcrumb">
+                    Administração / Relatórios
+                </div>
+            </div>
+
+            <div class="admin-user">
+                <div>
+                    <strong>Administrador</strong>
+                    <span>Acesso administrativo</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="relatorios-page">
+
+            <!-- TÍTULO E FILTROS -->
+            <div class="relatorios-heading">
+
+                <div>
+                    <h1>Relatórios</h1>
+                    <p>Acompanhe os resultados e atividades da ONG.</p>
+                </div>
+
+                <div class="relatorios-actions">
+
+                    <select id="filtroPeriodo" onchange="atualizarRelatorios()">
+                        <option value="6">Últimos 6 meses</option>
+                        <option value="12">Últimos 12 meses</option>
+                    </select>
+
+                    <button class="btn-imprimir" onclick="window.print()">
+                        Imprimir relatório
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- INDICADORES -->
+            <div class="relatorios-stats">
+
+                <div class="relatorio-stat">
+                    <div class="stat-top">
+                        <span class="stat-label">Total de animais</span>
+                        <div class="stat-icon icon-animais">🐾</div>
+                    </div>
+
+                    <div class="stat-number">24</div>
+                    <div class="stat-description">Animais cadastrados</div>
+                </div>
+
+                <div class="relatorio-stat">
+                    <div class="stat-top">
+                        <span class="stat-label">Disponíveis</span>
+                        <div class="stat-icon icon-disponiveis">🏠</div>
+                    </div>
+
+                    <div class="stat-number">12</div>
+                    <div class="stat-description">Aguardando adoção</div>
+                </div>
+
+                <div class="relatorio-stat">
+                    <div class="stat-top">
+                        <span class="stat-label">Adoções aprovadas</span>
+                        <div class="stat-icon icon-aprovadas">❤️</div>
+                    </div>
+
+                    <div class="stat-number">8</div>
+                    <div class="stat-description">Solicitações aprovadas</div>
+                </div>
+
+                <div class="relatorio-stat">
+                    <div class="stat-top">
+                        <span class="stat-label">Solicitações pendentes</span>
+                        <div class="stat-icon icon-pendentes">⏳</div>
+                    </div>
+
+                    <div class="stat-number">4</div>
+                    <div class="stat-description">Aguardando análise</div>
+                </div>
+
+            </div>
+
+            <!-- GRÁFICOS -->
+            <div class="relatorios-charts">
+
+                <!-- GRÁFICO DE BARRAS -->
+                <div class="relatorio-panel">
+
+                    <div class="panel-heading">
+                        <h2>Evolução das adoções</h2>
+                        <p>Quantidade de adoções aprovadas por mês.</p>
+                    </div>
+
+                    <div class="grafico-barras" id="graficoBarras"></div>
+
+                </div>
+
+                <!-- GRÁFICO DE ROSCA -->
+                <div class="relatorio-panel">
+
+                    <div class="panel-heading">
+                        <h2>Situação dos animais</h2>
+                        <p>Distribuição dos animais cadastrados.</p>
+                    </div>
+
+                    <div class="grafico-situacao">
+
+                        <div class="grafico-rosca">
+                            <div class="rosca-centro">
+                                <strong>24</strong>
+                                <span>Animais</span>
+                            </div>
+                        </div>
+
+                        <div class="legenda-rosca">
+
+                            <div class="legenda-item">
+                                <span class="legenda-cor" style="background:#75a88e"></span>
+                                Disponíveis <strong>12</strong>
+                            </div>
+
+                            <div class="legenda-item">
+                                <span class="legenda-cor" style="background:#6d91c2"></span>
+                                Adotados <strong>8</strong>
+                            </div>
+
+                            <div class="legenda-item">
+                                <span class="legenda-cor" style="background:#e8b86d"></span>
+                                Em tratamento <strong>4</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TABELA DE ADOÇÕES -->
+            <div class="relatorio-panel">
+
+                <div class="panel-heading">
+                    <h2>Resumo de adoções</h2>
+                    <p>Acompanhamento mensal das solicitações.</p>
+                </div>
+
+                <div class="relatorio-table-container">
+
+                    <table class="relatorio-table">
+
+                        <thead>
+                            <tr>
+                                <th>Mês</th>
+                                <th>Solicitações</th>
+                                <th>Aprovadas</th>
+                                <th>Recusadas</th>
+                                <th>Pendentes</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabelaRelatorios"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div class="relatorios-aviso">
+                Os dados apresentados são demonstrativos e servem para visualizar
+                o funcionamento dos relatórios. A integração com os registros reais
+                da ONG poderá ser realizada posteriormente.
+            </div>
+
+        </section>
+
+        <footer class="admin-footer">
+            <p>© 2026 Patinhas & Amigos. Todos os direitos reservados.</p>
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+    // Dados demonstrativos dos últimos 12 meses
+    const dadosRelatorios = [
+        { mes: "Dez", solicitacoes: 3, aprovadas: 2, recusadas: 1, pendentes: 0 },
+        { mes: "Jan", solicitacoes: 4, aprovadas: 2, recusadas: 1, pendentes: 1 },
+        { mes: "Fev", solicitacoes: 5, aprovadas: 3, recusadas: 1, pendentes: 1 },
+        { mes: "Mar", solicitacoes: 3, aprovadas: 2, recusadas: 0, pendentes: 1 },
+        { mes: "Abr", solicitacoes: 4, aprovadas: 3, recusadas: 1, pendentes: 0 },
+        { mes: "Mai", solicitacoes: 5, aprovadas: 3, recusadas: 1, pendentes: 1 },
+        { mes: "Jun", solicitacoes: 4, aprovadas: 2, recusadas: 1, pendentes: 1 },
+        { mes: "Jul", solicitacoes: 6, aprovadas: 4, recusadas: 1, pendentes: 1 },
+        { mes: "Ago", solicitacoes: 5, aprovadas: 3, recusadas: 1, pendentes: 1 },
+        { mes: "Set", solicitacoes: 4, aprovadas: 3, recusadas: 0, pendentes: 1 },
+        { mes: "Out", solicitacoes: 3, aprovadas: 2, recusadas: 0, pendentes: 1 },
+        { mes: "Nov", solicitacoes: 4, aprovadas: 3, recusadas: 0, pendentes: 1 }
+    ];
+
+    function atualizarRelatorios() {
+
+        const periodo = Number(document.getElementById("filtroPeriodo").value);
+
+        const dadosFiltrados = dadosRelatorios.slice(-periodo);
+
+        atualizarGrafico(dadosFiltrados);
+        atualizarTabela(dadosFiltrados);
+    }
+
+    function atualizarGrafico(dados) {
+
+        const grafico = document.getElementById("graficoBarras");
+
+        grafico.innerHTML = "";
+
+        let maiorValor = 0;
+
+        for (let i = 0; i < dados.length; i++) {
+            if (dados[i].aprovadas > maiorValor) {
+                maiorValor = dados[i].aprovadas;
+            }
+        }
+
+        for (let i = 0; i < dados.length; i++) {
+
+            const altura = maiorValor > 0
+                ? (dados[i].aprovadas / maiorValor) * 180
+                : 0;
+
+            grafico.innerHTML += `
+                <div class="barra-item">
+
+                    <span class="barra-valor">${dados[i].aprovadas}</span>
+
+                    <div
+                        class="barra"
+                        style="height: ${altura}px"
+                        title="${dados[i].aprovadas} adoções aprovadas">
+                    </div>
+
+                    <span class="barra-mes">${dados[i].mes}</span>
+
+                </div>
+            `;
+        }
+    }
+
+    function atualizarTabela(dados) {
+
+        const tabela = document.getElementById("tabelaRelatorios");
+
+        tabela.innerHTML = "";
+
+        for (let i = 0; i < dados.length; i++) {
+
+            tabela.innerHTML += `
+                <tr>
+                    <td><strong>${dados[i].mes}</strong></td>
+                    <td>${dados[i].solicitacoes}</td>
+                    <td>${dados[i].aprovadas}</td>
+                    <td>${dados[i].recusadas}</td>
+                    <td>${dados[i].pendentes}</td>
+                </tr>
+            `;
+        }
+    }
+
+    // Inicialização da página
+    atualizarRelatorios();
+
+    if (typeof verificarLogin === "function") {
+        verificarLogin();
+    }
+</script>
+
+</body>
+</html>

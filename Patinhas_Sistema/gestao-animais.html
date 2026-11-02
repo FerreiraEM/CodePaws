@@ -1,0 +1,1004 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Animais - Patinhas & Amigos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .animais-page {
+            width: 100%;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .animais-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .animais-heading h1 {
+            color: #263b35;
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+        }
+
+        .animais-heading p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .btn-cadastrar {
+            background: #4CAF50;;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-cadastrar:hover {
+            background: #43a047;
+        }
+
+        /* INDICADORES */
+
+        .animais-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .animal-stat {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .animal-stat span {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .animal-stat strong {
+            display: block;
+            color: #263b35;
+            font-size: 2rem;
+            margin-top: 12px;
+        }
+
+        /* PAINEL E FILTROS */
+
+        .animais-panel {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .animais-panel h2 {
+            color: #263b35;
+            font-size: 1.1rem;
+            margin-bottom: 18px;
+        }
+
+        .animais-filtros {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .animais-filtros input,
+        .animais-filtros select {
+            padding: 11px 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        .animais-filtros input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .animais-filtros select {
+            min-width: 160px;
+        }
+
+        /* TABELA */
+
+        .animais-table-container {
+            overflow-x: auto;
+        }
+
+        .animais-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        .animais-table th {
+            background: #f8f9f8;
+            color: #777;
+            text-align: left;
+            padding: 14px 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .animais-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .animais-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .animal-nome {
+            color: #263b35;
+            font-weight: 600;
+        }
+
+        .animal-status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-disponivel {
+            background: #e8f4e9;
+            color: #36754a;
+        }
+
+        .status-processo {
+            background: #fff3df;
+            color: #a56c1e;
+        }
+
+        .status-adotado {
+            background: #e8eff9;
+            color: #496b9a;
+        }
+
+        .animal-acoes {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .animal-acoes button {
+            border: none;
+            border-radius: 6px;
+            padding: 7px 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-ver {
+            background: #edf1f5;
+            color: #53677c;
+        }
+
+        .btn-editar {
+            background: #e8f2ed;
+            color: #477d68;
+        }
+
+        .sem-resultados {
+            text-align: center;
+            color: #999;
+            padding: 25px;
+        }
+
+        /* MODAL */
+
+        .animal-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .animal-modal.aberto {
+            display: flex;
+        }
+
+        .animal-modal-content {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .modal-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .modal-heading h2 {
+            color: #263b35;
+            font-size: 1.25rem;
+        }
+
+        .btn-fechar {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: #777;
+            cursor: pointer;
+        }
+
+        .animal-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-grupo {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-grupo.completo {
+            grid-column: 1 / -1;
+        }
+
+        .form-grupo label {
+            color: #555;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .form-grupo input,
+        .form-grupo select,
+        .form-grupo textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .form-grupo textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .modal-acoes {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .modal-acoes button {
+            padding: 10px 16px;
+            border-radius: 7px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-cancelar {
+            background: #eee;
+            color: #555;
+        }
+
+        .btn-salvar {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .animal-detalhe {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .detalhe-item span {
+            display: block;
+            color: #999;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        .detalhe-item strong {
+            color: #263b35;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 1000px) {
+            .animais-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .animais-page {
+                padding: 1rem;
+            }
+
+            .animais-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .animal-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grupo.completo {
+                grid-column: auto;
+            }
+
+            .animal-detalhe {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="admin-body">
+
+<div class="admin-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="admin-sidebar">
+
+        <div class="admin-brand">
+
+            <div class="admin-brand-icon">
+                P
+            </div>
+
+            <div>
+                <strong>Patinhas & Amigos</strong>
+                <small>Área administrativa</small>
+            </div>
+
+        </div>
+
+        <div class="admin-menu-title">
+            MENU PRINCIPAL
+        </div>
+
+        <nav class="admin-menu">
+
+            <a href="dashboard.html" class="admin-menu-link">
+                <span>▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="gestao-animais.html" class="admin-menu-link active">
+                <span>🐾</span>
+                <span>Animais</span>
+            </a>
+
+            <a href="estoque.html" class="admin-menu-link">
+                <span>▤</span>
+                <span>Estoque</span>
+            </a>
+
+            <a href="agenda.html" class="admin-menu-link">
+                <span>▣</span>
+                <span>Agenda</span>
+            </a>
+
+            <a href="funcionarios.html" class="admin-menu-link">
+                <span>♙</span>
+                <span>Funcionários</span>
+            </a>
+
+            <a href="gestao-adocoes.html" class="admin-menu-link">
+                <span>♡</span>
+                <span>Adoções</span>
+            </a>
+
+            <a href="relatorios.html" class="admin-menu-link">
+                <span>▥</span>
+                <span>Relatórios</span>
+            </a>
+
+        </nav>
+
+        <div class="admin-sidebar-bottom">
+
+            <a href="index.html" class="admin-menu-link">
+                <span>←</span>
+                <span>Site público</span>
+            </a>
+
+            <a href="#" class="admin-menu-link logout"
+               onclick="fazerLogout(); return false;">
+                <span>↪</span>
+                <span>Sair</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <main class="admin-main">
+
+        <header class="admin-topbar">
+
+            <div>
+                <div class="admin-breadcrumb">
+                    Administração / Animais
+                </div>
+            </div>
+
+            <div class="admin-user">
+                <div>
+                    <strong>Administrador</strong>
+                    <span>Acesso administrativo</span>
+                </div>
+            </div>
+
+        </header>
+
+        <section class="animais-page">
+
+            <div class="animais-heading">
+
+                <div>
+                    <h1>Gestão de Animais</h1>
+                    <p>Cadastre e acompanhe os animais da ONG.</p>
+                </div>
+
+                <button class="btn-cadastrar" onclick="abrirCadastro()">
+                    + Cadastrar animal
+                </button>
+
+            </div>
+
+            <!-- INDICADORES -->
+
+            <div class="animais-stats">
+
+                <div class="animal-stat">
+                    <span>Total de animais</span>
+                    <strong id="totalAnimais">0</strong>
+                </div>
+
+                <div class="animal-stat">
+                    <span>Disponíveis</span>
+                    <strong id="totalDisponiveis">0</strong>
+                </div>
+
+                <div class="animal-stat">
+                    <span>Em processo</span>
+                    <strong id="totalProcesso">0</strong>
+                </div>
+
+                <div class="animal-stat">
+                    <span>Adotados</span>
+                    <strong id="totalAdotados">0</strong>
+                </div>
+
+            </div>
+
+            <!-- LISTAGEM -->
+
+            <div class="animais-panel">
+
+                <h2>Animais cadastrados</h2>
+
+                <div class="animais-filtros">
+
+                    <input
+                        type="text"
+                        id="buscaAnimal"
+                        placeholder="Buscar animal pelo nome..."
+                    >
+
+                    <select id="filtroTipo">
+                        <option value="">Todos os tipos</option>
+                        <option value="Cão">Cão</option>
+                        <option value="Gato">Gato</option>
+                    </select>
+
+                    <select id="filtroStatus">
+                        <option value="">Todas as situações</option>
+                        <option value="Disponível">Disponível</option>
+                        <option value="Em processo">Em processo</option>
+                        <option value="Adotado">Adotado</option>
+                    </select>
+
+                </div>
+
+                <div class="animais-table-container">
+
+                    <table class="animais-table">
+
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Tipo</th>
+                                <th>Idade</th>
+                                <th>Porte</th>
+                                <th>Situação</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listaAnimais"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer class="admin-footer">
+            <p>© 2026 Patinhas & Amigos. Todos os direitos reservados.</p>
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- MODAL DE CADASTRO / EDIÇÃO / VISUALIZAÇÃO -->
+
+<div class="animal-modal" id="modalAnimal">
+
+    <div class="animal-modal-content">
+
+        <div class="modal-heading">
+            <h2 id="tituloModal">Cadastrar animal</h2>
+
+            <button class="btn-fechar" onclick="fecharModal()">
+                &times;
+            </button>
+        </div>
+
+        <form id="formAnimal" onsubmit="salvarAnimal(event)">
+
+            <div class="animal-form">
+
+                <div class="form-grupo">
+                    <label for="nomeAnimal">Nome</label>
+                    <input type="text" id="nomeAnimal" required>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="tipoAnimal">Tipo</label>
+                    <select id="tipoAnimal" required>
+                        <option value="">Selecione</option>
+                        <option value="Cão">Cão</option>
+                        <option value="Gato">Gato</option>
+                    </select>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="idadeAnimal">Idade</label>
+                    <input type="text" id="idadeAnimal" placeholder="Ex.: 2 anos" required>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="porteAnimal">Porte</label>
+                    <select id="porteAnimal" required>
+                        <option value="">Selecione</option>
+                        <option value="Pequeno">Pequeno</option>
+                        <option value="Médio">Médio</option>
+                        <option value="Grande">Grande</option>
+                    </select>
+                </div>
+
+                <div class="form-grupo completo">
+                    <label for="statusAnimal">Situação</label>
+                    <select id="statusAnimal" required>
+                        <option value="Disponível">Disponível</option>
+                        <option value="Em processo">Em processo</option>
+                        <option value="Adotado">Adotado</option>
+                    </select>
+                </div>
+
+                <div class="form-grupo completo">
+                    <label for="descricaoAnimal">Descrição</label>
+                    <textarea id="descricaoAnimal"
+                        placeholder="Informações adicionais sobre o animal..."></textarea>
+                </div>
+
+            </div>
+
+            <div class="modal-acoes" id="acoesFormulario">
+
+                <button type="button" class="btn-cancelar" onclick="fecharModal()">
+                    Cancelar
+                </button>
+
+                <button type="submit" class="btn-salvar">
+                    Salvar animal
+                </button>
+
+            </div>
+
+        </form>
+
+        <div id="detalhesAnimal" style="display:none"></div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+    // Animais demonstrativos
+
+    let animais = [
+        {
+            id: 1,
+            nome: "Thor",
+            tipo: "Cão",
+            idade: "2 anos",
+            porte: "Médio",
+            status: "Disponível",
+            descricao: "Animal aguardando uma família."
+        },
+        {
+            id: 2,
+            nome: "Luna",
+            tipo: "Gato",
+            idade: "1 ano",
+            porte: "Pequeno",
+            status: "Disponível",
+            descricao: "Gatinha disponível para adoção."
+        },
+        {
+            id: 3,
+            nome: "Mel",
+            tipo: "Cão",
+            idade: "3 anos",
+            porte: "Pequeno",
+            status: "Em processo",
+            descricao: "Possui uma solicitação de adoção em andamento."
+        },
+        {
+            id: 4,
+            nome: "Max",
+            tipo: "Cão",
+            idade: "4 anos",
+            porte: "Grande",
+            status: "Adotado",
+            descricao: "Animal já adotado."
+        }
+    ];
+
+    let idEditando = null;
+    let modoVisualizacao = false;
+
+    // Atualizar indicadores
+
+    function atualizarIndicadores() {
+
+        document.getElementById("totalAnimais").textContent = animais.length;
+
+        let disponiveis = 0;
+        let emProcesso = 0;
+        let adotados = 0;
+
+        for (let i = 0; i < animais.length; i++) {
+
+            if (animais[i].status === "Disponível") {
+                disponiveis++;
+            }
+
+            if (animais[i].status === "Em processo") {
+                emProcesso++;
+            }
+
+            if (animais[i].status === "Adotado") {
+                adotados++;
+            }
+        }
+
+        document.getElementById("totalDisponiveis").textContent = disponiveis;
+        document.getElementById("totalProcesso").textContent = emProcesso;
+        document.getElementById("totalAdotados").textContent = adotados;
+    }
+
+    // Mostrar animais na tabela
+
+    function mostrarAnimais() {
+
+        const lista = document.getElementById("listaAnimais");
+
+        const busca = document.getElementById("buscaAnimal").value.toLowerCase();
+        const tipo = document.getElementById("filtroTipo").value;
+        const status = document.getElementById("filtroStatus").value;
+
+        lista.innerHTML = "";
+
+        let encontrados = 0;
+
+        for (let i = 0; i < animais.length; i++) {
+
+            const animal = animais[i];
+
+            if (!animal.nome.toLowerCase().includes(busca)) {
+                continue;
+            }
+
+            if (tipo !== "" && animal.tipo !== tipo) {
+                continue;
+            }
+
+            if (status !== "" && animal.status !== status) {
+                continue;
+            }
+
+            let classeStatus = "";
+
+            if (animal.status === "Disponível") {
+                classeStatus = "status-disponivel";
+            } else if (animal.status === "Em processo") {
+                classeStatus = "status-processo";
+            } else {
+                classeStatus = "status-adotado";
+            }
+
+            lista.innerHTML += `
+                <tr>
+                    <td class="animal-nome">${animal.nome}</td>
+                    <td>${animal.tipo}</td>
+                    <td>${animal.idade}</td>
+                    <td>${animal.porte}</td>
+                    <td>
+                        <span class="animal-status ${classeStatus}">
+                            ${animal.status}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="animal-acoes">
+                            <button class="btn-ver" onclick="verAnimal(${animal.id})">
+                                Ver
+                            </button>
+
+                            <button class="btn-editar" onclick="editarAnimal(${animal.id})">
+                                Editar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+
+            encontrados++;
+        }
+
+        if (encontrados === 0) {
+            lista.innerHTML = `
+                <tr>
+                    <td colspan="6" class="sem-resultados">
+                        Nenhum animal encontrado.
+                    </td>
+                </tr>
+            `;
+        }
+    }
+
+    // Abrir cadastro
+
+    function abrirCadastro() {
+
+        idEditando = null;
+        modoVisualizacao = false;
+
+        document.getElementById("formAnimal").reset();
+        document.getElementById("tituloModal").textContent = "Cadastrar animal";
+
+        document.getElementById("formAnimal").style.display = "block";
+        document.getElementById("detalhesAnimal").style.display = "none";
+        document.getElementById("acoesFormulario").style.display = "flex";
+
+        document.getElementById("modalAnimal").classList.add("aberto");
+    }
+
+    // Editar animal
+
+    function editarAnimal(id) {
+
+        const animal = animais.find(item => item.id === id);
+
+        if (!animal) return;
+
+        idEditando = id;
+        modoVisualizacao = false;
+
+        document.getElementById("tituloModal").textContent = "Editar animal";
+
+        document.getElementById("nomeAnimal").value = animal.nome;
+        document.getElementById("tipoAnimal").value = animal.tipo;
+        document.getElementById("idadeAnimal").value = animal.idade;
+        document.getElementById("porteAnimal").value = animal.porte;
+        document.getElementById("statusAnimal").value = animal.status;
+        document.getElementById("descricaoAnimal").value = animal.descricao;
+
+        document.getElementById("formAnimal").style.display = "block";
+        document.getElementById("detalhesAnimal").style.display = "none";
+        document.getElementById("acoesFormulario").style.display = "flex";
+
+        document.getElementById("modalAnimal").classList.add("aberto");
+    }
+
+    // Visualizar detalhes
+
+    function verAnimal(id) {
+
+        const animal = animais.find(item => item.id === id);
+
+        if (!animal) return;
+
+        document.getElementById("tituloModal").textContent = "Detalhes do animal";
+
+        document.getElementById("formAnimal").style.display = "none";
+        document.getElementById("acoesFormulario").style.display = "none";
+
+        const detalhes = document.getElementById("detalhesAnimal");
+
+        detalhes.style.display = "block";
+
+        detalhes.innerHTML = `
+            <div class="animal-detalhe">
+
+                <div class="detalhe-item">
+                    <span>Nome</span>
+                    <strong>${animal.nome}</strong>
+                </div>
+
+                <div class="detalhe-item">
+                    <span>Tipo</span>
+                    <strong>${animal.tipo}</strong>
+                </div>
+
+                <div class="detalhe-item">
+                    <span>Idade</span>
+                    <strong>${animal.idade}</strong>
+                </div>
+
+                <div class="detalhe-item">
+                    <span>Porte</span>
+                    <strong>${animal.porte}</strong>
+                </div>
+
+                <div class="detalhe-item">
+                    <span>Situação</span>
+                    <strong>${animal.status}</strong>
+                </div>
+
+                <div class="detalhe-item">
+                    <span>Descrição</span>
+                    <strong>${animal.descricao || "Sem descrição."}</strong>
+                </div>
+
+            </div>
+        `;
+
+        document.getElementById("modalAnimal").classList.add("aberto");
+    }
+
+    // Salvar cadastro ou edição
+
+    function salvarAnimal(event) {
+
+        event.preventDefault();
+
+        const nome = document.getElementById("nomeAnimal").value.trim();
+
+        if (nome === "") {
+            alert("Informe o nome do animal.");
+            return;
+        }
+
+        const novoAnimal = {
+            nome: nome,
+            tipo: document.getElementById("tipoAnimal").value,
+            idade: document.getElementById("idadeAnimal").value,
+            porte: document.getElementById("porteAnimal").value,
+            status: document.getElementById("statusAnimal").value,
+            descricao: document.getElementById("descricaoAnimal").value
+        };
+
+        if (idEditando !== null) {
+
+            const animal = animais.find(item => item.id === idEditando);
+
+            animal.nome = novoAnimal.nome;
+            animal.tipo = novoAnimal.tipo;
+            animal.idade = novoAnimal.idade;
+            animal.porte = novoAnimal.porte;
+            animal.status = novoAnimal.status;
+            animal.descricao = novoAnimal.descricao;
+
+            alert("Animal atualizado com sucesso!");
+
+        } else {
+
+            novoAnimal.id = animais.length > 0
+                ? Math.max(...animais.map(item => item.id)) + 1
+                : 1;
+
+            animais.push(novoAnimal);
+
+            alert("Animal cadastrado com sucesso!");
+        }
+
+        fecharModal();
+        atualizarIndicadores();
+        mostrarAnimais();
+    }
+
+    // Fechar modal
+
+    function fecharModal() {
+
+        document.getElementById("modalAnimal").classList.remove("aberto");
+
+    }
+
+    // Filtros
+
+    document.getElementById("buscaAnimal").addEventListener("input", mostrarAnimais);
+    document.getElementById("filtroTipo").addEventListener("change", mostrarAnimais);
+    document.getElementById("filtroStatus").addEventListener("change", mostrarAnimais);
+
+    // Fechar ao clicar fora da janela
+
+    document.getElementById("modalAnimal").addEventListener("click", function(event) {
+
+        if (event.target === this) {
+            fecharModal();
+        }
+
+    });
+
+    // Inicialização
+
+    atualizarIndicadores();
+    mostrarAnimais();
+
+    if (typeof verificarLogin === "function") {
+        verificarLogin();
+    }
+
+</script>
+
+</body>
+</html>

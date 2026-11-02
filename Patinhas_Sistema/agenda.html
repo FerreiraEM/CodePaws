@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patinhas & Amigos | Agenda</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+</head>
+
+<body class="admin-body">
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+
+                <div class="admin-brand-icon">
+                    P
+                </div>
+
+                <div>
+                    <strong>Patinhas & Amigos</strong>
+                    <small>Área administrativa</small>
+                </div>
+
+            </div>
+
+            <div class="admin-menu-title">
+                MENU PRINCIPAL
+            </div>
+
+            <nav class="admin-menu">
+
+                <a href="dashboard.html" class="admin-menu-link">
+                    <span>▦</span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="gestao-animais.html" class="admin-menu-link">
+                    <span>🐾</span>
+                    <span>Animais</span>
+                </a>
+
+                <a href="estoque.html" class="admin-menu-link">
+                    <span>▤</span>
+                    <span>Estoque</span>
+                </a>
+
+                <a href="agenda.html" class="admin-menu-link active">
+                    <span>▣</span>
+                    <span>Agenda</span>
+                </a>
+
+                <a href="funcionarios.html" class="admin-menu-link">
+                    <span>♙</span>
+                    <span>Funcionários</span>
+                </a>
+
+                <a href="gestao-adocoes.html" class="admin-menu-link">
+                    <span>♡</span>
+                    <span>Adoções</span>
+                </a>
+
+                <a href="relatorios.html" class="admin-menu-link">
+                    <span>▥</span>
+                    <span>Relatórios</span>
+                </a>
+
+            </nav>
+
+            <div class="admin-sidebar-bottom">
+
+                <a href="index.html" class="admin-menu-link">
+                    <span>←</span>
+                    <span>Site público</span>
+                </a>
+
+                <a href="#" class="admin-menu-link logout"
+                   onclick="fazerLogout(); return false;">
+                    <span>↪</span>
+                    <span>Sair</span>
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+
+        <main class="admin-main">
+
+            <!-- CABEÇALHO -->
+
+            <header class="admin-topbar">
+
+                <div>
+                    <span class="admin-breadcrumb">
+                        Administração / Agenda
+                    </span>
+                </div>
+
+                <div class="admin-user">
+
+                    <div class="admin-user-avatar">
+                        A
+                    </div>
+
+                    <div>
+                        <strong>Administrador</strong>
+                        <small>Acesso administrativo</small>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <div class="admin-content">
+
+                <!-- TÍTULO -->
+
+                <div class="admin-page-title agenda-title">
+
+                    <div>
+
+                        <span class="admin-label">
+                            ORGANIZAÇÃO E COMPROMISSOS
+                        </span>
+
+                        <h1>Agenda</h1>
+
+                        <p>
+                            Gerencie consultas, reuniões, visitas e eventos da ONG.
+                        </p>
+
+                    </div>
+
+                    <button class="agenda-btn"
+                            onclick="abrirCadastroAgenda()">
+
+                        + Novo compromisso
+
+                    </button>
+
+                </div>
+
+
+                <!-- INDICADORES -->
+
+                <section class="agenda-stats">
+
+                    <div class="agenda-stat">
+
+                        <span>Total de compromissos</span>
+
+                        <strong>18</strong>
+
+                        <small>Compromissos cadastrados</small>
+
+                    </div>
+
+                    <div class="agenda-stat">
+
+                        <span>Agendados</span>
+
+                        <strong>12</strong>
+
+                        <small>Compromissos futuros</small>
+
+                    </div>
+
+                    <div class="agenda-stat">
+
+                        <span>Concluídos</span>
+
+                        <strong>4</strong>
+
+                        <small>Atividades realizadas</small>
+
+                    </div>
+
+                    <div class="agenda-stat">
+
+                        <span>Cancelados</span>
+
+                        <strong>2</strong>
+
+                        <small>Compromissos cancelados</small>
+
+                    </div>
+
+                </section>
+
+
+                <!-- FILTROS -->
+
+                <section class="agenda-filters">
+
+                    <div>
+
+                        <label for="buscaAgenda">
+                            Buscar compromisso
+                        </label>
+
+                        <input
+                            type="text"
+                            id="buscaAgenda"
+                            placeholder="Digite o nome do compromisso...">
+
+                    </div>
+
+                    <div>
+
+                        <label for="dataAgenda">
+                            Data
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dataAgenda">
+
+                    </div>
+
+                    <div>
+
+                        <label for="tipoAgenda">
+                            Tipo
+                        </label>
+
+                        <select id="tipoAgenda">
+
+                            <option value="">
+                                Todos
+                            </option>
+
+                            <option value="consulta">
+                                Consulta veterinária
+                            </option>
+
+                            <option value="reuniao">
+                                Reunião
+                            </option>
+
+                            <option value="evento">
+                                Evento
+                            </option>
+
+                            <option value="visita">
+                                Visita
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div>
+
+                        <label for="statusAgenda">
+                            Situação
+                        </label>
+
+                        <select id="statusAgenda">
+
+                            <option value="">
+                                Todas
+                            </option>
+
+                            <option value="agendado">
+                                Agendado
+                            </option>
+
+                            <option value="concluido">
+                                Concluído
+                            </option>
+
+                            <option value="cancelado">
+                                Cancelado
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </section>
+
+
+                <!-- TABELA DE COMPROMISSOS -->
+
+                <section class="agenda-table-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="admin-label">
+                                CONTROLE DE COMPROMISSOS
+                            </span>
+
+                            <h2>Compromissos cadastrados</h2>
+
+                        </div>
+
+                    </div>
+
+                    <div class="agenda-table-container">
+
+                        <table class="agenda-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Compromisso</th>
+                                    <th>Animal</th>
+                                    <th>Data</th>
+                                    <th>Horário</th>
+                                    <th>Responsável</th>
+                                    <th>Situação</th>
+                                    <th>Ações</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>Consulta veterinária</strong>
+                                    </td>
+
+                                    <td>Thor</td>
+
+                                    <td>05/11/2026</td>
+
+                                    <td>14:00</td>
+
+                                    <td>Mariana</td>
+
+                                    <td>
+                                        <span class="agenda-status agenda-agendado">
+                                            Agendado
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <button class="agenda-action">
+                                            Editar
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>Reunião da equipe</strong>
+                                    </td>
+
+                                    <td>—</td>
+
+                                    <td>06/11/2026</td>
+
+                                    <td>16:00</td>
+
+                                    <td>Roberto</td>
+
+                                    <td>
+                                        <span class="agenda-status agenda-agendado">
+                                            Agendado
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <button class="agenda-action">
+                                            Editar
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>Evento de adoção</strong>
+                                    </td>
+
+                                    <td>Vários animais</td>
+
+                                    <td>08/11/2026</td>
+
+                                    <td>10:00</td>
+
+                                    <td>Camila</td>
+
+                                    <td>
+                                        <span class="agenda-status agenda-agendado">
+                                            Agendado
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <button class="agenda-action">
+                                            Editar
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>Consulta veterinária</strong>
+                                    </td>
+
+                                    <td>Luna</td>
+
+                                    <td>01/11/2026</td>
+
+                                    <td>09:00</td>
+
+                                    <td>Mariana</td>
+
+                                    <td>
+                                        <span class="agenda-status agenda-concluido">
+                                            Concluído
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <button class="agenda-action">
+                                            Visualizar
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>Visita ao abrigo</strong>
+                                    </td>
+
+                                    <td>—</td>
+
+                                    <td>30/10/2026</td>
+
+                                    <td>15:00</td>
+
+                                    <td>Roberto</td>
+
+                                    <td>
+                                        <span class="agenda-status agenda-cancelado">
+                                            Cancelado
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <button class="agenda-action">
+                                            Visualizar
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- RODAPÉ -->
+
+            <footer class="admin-footer">
+
+                <span>© 2026 Patinhas & Amigos</span>
+
+                <span>Sistema administrativo</span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <script>
+        verificarLogin();
+    </script>
+
+</body>
+</html>
