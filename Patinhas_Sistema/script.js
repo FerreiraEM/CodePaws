@@ -1,3126 +1,393 @@
-/* RESET & ESTILOS GERAIS */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    background-color: #f4f7f6;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-
-/* CABEÇALHO E NAVEGAÇÃO */
-
-header {
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #4CAF50;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: #555;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.nav-link:hover,
-.nav-link.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-
-/* CONTEÚDO DAS PÁGINAS */
-
-main {
-    flex: 1;
-    max-width: 1200px;
-    width: 100%;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-
-.page {
-    display: none;
-    animation: fadeIn 0.4s ease-in-out;
-}
-
-.page.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-/* ESTILOS DOS BOTÕES */
-
-.btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.btn:hover {
-    background-color: #45a049;
-}
-
-
-/* TELA PRINCIPAL */
-
-.hero {
-    background:
-        linear-gradient(
-            rgba(0,0,0,0.5),
-            rgba(0,0,0,0.5)
-        ),
-        url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1200&q=80');
-
-    background-size: cover;
-    background-position: center;
-
-    color: white;
-
-    padding: 4rem 2rem;
-
-    text-align: center;
-
-    border-radius: 12px;
-
-    margin-bottom: 2rem;
-}
-
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-}
-
-.home-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.info-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    text-align: center;
-}
-
-
-/* TELA DE ADOÇÃO */
-
-.pet-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-.pet-card {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.pet-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.pet-info {
-    padding: 1rem;
-}
-
-.pet-info h3 {
-    margin-bottom: 0.5rem;
-}
-
-
-/* TELA DE DOAÇÕES */
-
-.donation-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.pix-box {
-    background: #e8f5e9;
-    border: 2px dashed #4CAF50;
-    padding: 1rem;
-    text-align: center;
-    margin: 1.5rem 0;
-    border-radius: 6px;
-}
-
-
-/* TELA DE LOGIN */
-
-.login-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 400px;
-    margin: 0 auto;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.form-group {
-    margin-bottom: 1.2rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-
-/* RODAPÉ */
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: auto;
-}
-
-/* =====================================================
-   PÁGINAS PÚBLICAS - ADOÇÃO E DOAÇÕES
-   ===================================================== */
-
-.container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-
-/* CABEÇALHO PÚBLICO */
-
-.public-header {
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.public-header .nav {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 1.5rem;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    text-decoration: none;
-    color: #4CAF50;
-}
-
-.brand b {
-    font-size: 2rem;
-}
-
-.brand span {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.brand small {
-    display: block;
-    font-size: 0.8rem;
-}
-
-
-/* MENU */
-
-.public-header .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    list-style: none;
-}
-
-.public-header .nav-links a {
-    text-decoration: none;
-    color: #555;
-
-    font-weight: 600;
-
-    padding: 0.6rem 1rem;
-    border-radius: 20px;
-
-    transition: 0.3s;
-}
-
-.public-header .nav-links a:hover,
-.public-header .nav-links a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-
-/* CABEÇALHO DAS PÁGINAS */
-
-.page-hero {
-    background:
-        linear-gradient(
-            rgba(0,0,0,0.45),
-            rgba(0,0,0,0.45)
-        ),
-        url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1200&q=80');
-
-    background-size: cover;
-    background-position: center;
-
-    color: white;
-
-    padding: 4rem 0;
-
-    text-align: center;
-}
-
-.page-hero h1 {
-    font-size: 2.5rem;
-    margin: 0.8rem 0 1rem;
-}
-
-.page-hero p {
-    font-size: 1.1rem;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-
-/* PEQUENO TÍTULO VERDE */
-
-.eyebrow {
-    display: inline-block;
-
-    color: #4CAF50;
-
-    font-size: 0.8rem;
-    font-weight: bold;
-
-    letter-spacing: 1px;
-}
-
-.page-hero .eyebrow {
-    color: #ffffff;
-}
-
-
-/* SEÇÕES */
-
-.section {
-    padding: 3rem 0;
-}
-
-
-/* FILTROS */
-
-.filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem;
-    margin-bottom: 2rem;
-}
-
-.filters button {
-    background: white;
-    color: #555;
-
-    border: 1px solid #ddd;
-    border-radius: 20px;
-
-    padding: 0.6rem 1.2rem;
-
-    cursor: pointer;
-
-    font-weight: 600;
-
-    transition: 0.3s;
-}
-
-.filters button:hover,
-.filters button.active {
-    background-color: #4CAF50;
-    color: white;
-    border-color: #4CAF50;
-}
-
-
-/* GRID DOS ANIMAIS */
-
-.animal-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
-
-    gap: 1.5rem;
-}
-
-
-/* CARD DO ANIMAL */
-
-.animal-card {
-    background: white;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,0.1);
-
-    transition: transform 0.2s;
-}
-
-.animal-card:hover {
-    transform: translateY(-3px);
-}
-
-
-/* IMAGEM DO ANIMAL */
-
-.animal-img {
-    height: 220px;
-
-    background-size: cover;
-    background-position: center;
-}
-
-
-/* Imagens */
-
-.animal-img.thor {
-    background-image:
-        url('https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80');
-}
-
-.animal-img.luna {
-    background-image:
-        url('https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=800&q=80');
-}
-
-.animal-img.mel {
-    background-image:
-        url('https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=800&q=80');
-}
-
-
-/* CONTEÚDO DO CARD */
-
-.animal-body {
-    padding: 1.2rem;
-}
-
-.animal-body h3 {
-    margin-bottom: 0.4rem;
-}
-
-.animal-body p {
-    color: #666;
-    margin-bottom: 0.6rem;
-}
-
-.animal-body small {
-    display: block;
-    color: #555;
-    margin-bottom: 1rem;
-}
-
-
-/* ORGANIZAÇÃO DO NOME + STATUS */
-
-.between {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 1rem;
-}
-
-
-/* STATUS */
-
-.status {
-    padding: 0.3rem 0.7rem;
-
-    border-radius: 20px;
-
-    font-size: 0.75rem;
-    font-weight: bold;
-}
-
-.status.ok {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-}
-
-
-/* BOTÃO CONTORNO */
-
-.btn.outline {
-    background-color: transparent;
-
-    color: #4CAF50;
-
-    border: 2px solid #4CAF50;
-
-    width: 100%;
-}
-
-.btn.outline:hover {
-    background-color: #4CAF50;
-    color: white;
-}
-
-
-/* BOTÃO VER MAIS */
-
-.more-box {
-    margin-top: 3rem;
-
-    padding: 2rem;
-
-    background-color: white;
-
-    border-radius: 10px;
-
-    text-align: center;
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,0.05);
-}
-
-.more-box p {
-    margin-bottom: 1rem;
-}
-
-
-/* BOTÃO PRINCIPAL */
-
-.btn.primary {
-    display: inline-block;
-
-    background-color: #4CAF50;
-
-    color: white;
-
-    text-decoration: none;
-
-    border: none;
-}
-
-.btn.primary:hover {
-    background-color: #45a049;
-}
-
-
-/* =====================================================
-   DOAÇÕES
-   ===================================================== */
-
-.donation-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(300px, 1fr));
-
-    gap: 2rem;
-
-    align-items: start;
-}
-
-.donation-info {
-    background: white;
-
-    padding: 2rem;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,0.05);
-}
-
-.donation-info h2 {
-    margin: 0.8rem 0 1rem;
-}
-
-.donation-info p {
-    color: #666;
-    line-height: 1.6;
-}
-
-
-/* LISTA DE DOAÇÕES */
-
-.donation-list {
-    margin-top: 1.5rem;
-}
-
-.donation-list > div {
-    padding: 1rem 0;
-
-    border-bottom: 1px solid #eee;
-}
-
-.donation-list > div:last-child {
-    border-bottom: none;
-}
-
-.donation-list b {
-    display: block;
-    margin-bottom: 0.3rem;
-}
-
-.donation-list small {
-    color: #666;
-}
-
-
-/* CARD PIX */
-
-.pix-card {
-    background: white;
-
-    padding: 2rem;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,0.1);
-}
-
-.pix {
-    background-color: #e8f5e9;
-
-    border: 2px dashed #4CAF50;
-
-    border-radius: 8px;
-
-    padding: 1.2rem;
-
-    margin: 1.5rem 0;
-
-    text-align: center;
-}
-
-.pix small {
-    display: block;
-
-    margin-bottom: 0.4rem;
-
-    color: #555;
-}
-
-.pix strong {
-    color: #2e7d32;
-}
-
-
-/* INPUT DA DOAÇÃO */
-
-.pix-card label {
-    display: block;
-
-    font-weight: 600;
-
-    margin-bottom: 0.5rem;
-}
-
-.input {
-    width: 100%;
-
-    padding: 0.75rem;
-
-    border: 1px solid #ccc;
-
-    border-radius: 6px;
-
-    font-size: 1rem;
-
-    margin-bottom: 1rem;
-}
-
-
-/* BOTÃO OCUPANDO TODA A LARGURA */
-
-.btn.full {
-    width: 100%;
-}
-
-
-/* =====================================================
-   RODAPÉ DAS PÁGINAS PÚBLICAS
-   ===================================================== */
-
-.footer {
-    background-color: #333;
-
-    color: white;
-
-    padding: 1.5rem 0;
-
-    margin-top: auto;
-}
-
-.footer .container {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 1rem;
-}
-
-.footer small {
-    color: #ddd;
-}
-
-
-/* =====================================================
-   RESPONSIVIDADE
-   ===================================================== */
-
-@media (max-width: 768px) {
-
-    .public-header .nav {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .public-header .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .page-hero h1 {
-        font-size: 2rem;
-    }
-
-    .footer .container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-}
-
-/* =========================================================
-   DASHBOARD ADMINISTRATIVO
-   ========================================================= */
-
-
-/* ---------------------------------------------------------
-   ESTRUTURA GERAL
-   --------------------------------------------------------- */
-
-.admin-body {
-    background-color: #f5f6f7;
-    color: #333;
-    display: block;
-    min-height: 100vh;
-}
-
-.admin-layout {
-    display: flex;
-    min-height: 100vh;
-}
-
-
-/* ---------------------------------------------------------
-   SIDEBAR
-   --------------------------------------------------------- */
-
-.admin-sidebar {
-    width: 245px;
-    min-width: 245px;
-
-    background-color: #ffffff;
-
-    border-right: 1px solid #e4e6e7;
-
-    display: flex;
-    flex-direction: column;
-
-    position: fixed;
-
-    top: 0;
-    bottom: 0;
-    left: 0;
-
-    z-index: 200;
-}
-
-
-/* MARCA */
-
-.admin-brand {
-    height: 76px;
-
-    padding: 0 1.3rem;
-
-    display: flex;
-    align-items: center;
-
-    gap: 0.8rem;
-
-    border-bottom: 1px solid #eeeeee;
-}
-
-.admin-brand-icon {
-    width: 36px;
-    height: 36px;
-
-    background-color: #4CAF50;
-
-    color: white;
-
-    border-radius: 7px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.admin-brand strong {
-    display: block;
-
-    color: #222;
-
-    font-size: 0.9rem;
-}
-
-.admin-brand small {
-    display: block;
-
-    color: #999;
-
-    font-size: 0.7rem;
-
-    margin-top: 2px;
-}
-
-
-/* TÍTULO DO MENU */
-
-.admin-menu-title {
-    padding: 1.5rem 1.3rem 0.7rem;
-
-    color: #999;
-
-    font-size: 0.65rem;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-}
-
-
-/* MENU */
-
-.admin-menu {
-    display: flex;
-    flex-direction: column;
-
-    padding: 0 0.8rem;
-}
-
-.admin-menu-link {
-    display: flex;
-
-    align-items: center;
-
-    gap: 0.8rem;
-
-    height: 42px;
-
-    padding: 0 0.8rem;
-
-    margin-bottom: 0.25rem;
-
-    border-radius: 6px;
-
-    color: #666;
-
-    text-decoration: none;
-
-    font-size: 0.85rem;
-
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
-}
-
-.admin-menu-link span:first-child {
-    width: 20px;
-
-    text-align: center;
-
-    font-size: 1rem;
-}
-
-.admin-menu-link:hover {
-    background-color: #f3f7f4;
-
-    color: #4CAF50;
-}
-
-.admin-menu-link.active {
-    background-color: #eaf5ec;
-
-    color: #3d9742;
-
-    font-weight: 600;
-}
-
-
-/* PARTE INFERIOR DA SIDEBAR */
-
-.admin-sidebar-bottom {
-    margin-top: auto;
-
-    padding: 1rem 0.8rem;
-
-    border-top: 1px solid #eeeeee;
-}
-
-.admin-sidebar-bottom .logout {
-    color: #777;
-}
-
-.admin-sidebar-bottom .logout:hover {
-    background-color: #f8f8f8;
-
-    color: #444;
-}
-
-
-/* ---------------------------------------------------------
-   ÁREA PRINCIPAL
-   --------------------------------------------------------- */
-
-.admin-main {
-    margin-left: 245px;
-
-    width: calc(100% - 245px);
-
-    min-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-}
-
-
-/* ---------------------------------------------------------
-   BARRA SUPERIOR
-   --------------------------------------------------------- */
-
-.admin-topbar {
-    height: 76px;
-
-    background-color: #ffffff;
-
-    border-bottom: 1px solid #e4e6e7;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 2rem;
-}
-
-.admin-breadcrumb {
-    color: #999;
-
-    font-size: 0.78rem;
-}
-
-
-/* USUÁRIO */
-
-.admin-user {
-    display: flex;
-
-    align-items: center;
-
-    gap: 0.7rem;
-}
-
-.admin-user-avatar {
-    width: 36px;
-    height: 36px;
-
-    border-radius: 50%;
-
-    background-color: #eaf5ec;
-
-    color: #3d9742;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 0.85rem;
-
-    font-weight: 700;
-}
-
-.admin-user strong {
-    display: block;
-
-    color: #333;
-
-    font-size: 0.8rem;
-}
-
-.admin-user small {
-    display: block;
-
-    color: #999;
-
-    font-size: 0.68rem;
-
-    margin-top: 2px;
-}
-
-
-/* ---------------------------------------------------------
-   CONTEÚDO
-   --------------------------------------------------------- */
-
-.admin-content {
-    width: 100%;
-
-    max-width: 1400px;
-
-    margin: 0 auto;
-
-    padding: 2rem;
-}
-
-
-/* TÍTULO DA PÁGINA */
-
-.admin-page-title {
-    margin-bottom: 2rem;
-}
-
-.admin-label {
-    display: block;
-
-    color: #4CAF50;
-
-    font-size: 0.65rem;
-
-    font-weight: 700;
-
-    letter-spacing: 1.1px;
-
-    margin-bottom: 0.35rem;
-}
-
-.admin-page-title h1 {
-    color: #222;
-
-    font-size: 1.8rem;
-
-    font-weight: 600;
-
-    margin: 0 0 0.35rem;
-}
-
-.admin-page-title p {
-    color: #888;
-
-    font-size: 0.85rem;
-
-    margin: 0;
-}
-
-
-/* ---------------------------------------------------------
-   INDICADORES
-   --------------------------------------------------------- */
-
-.dashboard-stats {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 1rem;
-
-    margin-bottom: 1.5rem;
-}
-
-.dashboard-stat {
-    background-color: #ffffff;
-
-    border: 1px solid #e4e6e7;
-
-    border-radius: 7px;
-
-    padding: 1.3rem;
-
-    min-height: 145px;
-}
-
-.stat-header {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 1rem;
-
-    color: #777;
-
-    font-size: 0.78rem;
-}
-
-.stat-symbol {
-    width: 30px;
-    height: 30px;
-
-    border-radius: 6px;
-
-    background-color: #f1f7f2;
-
-    color: #4CAF50;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 0.9rem;
-}
-
-.dashboard-stat > strong {
-    display: block;
-
-    color: #222;
-
-    font-size: 1.9rem;
-
-    font-weight: 600;
-
-    line-height: 1;
-
-    margin-bottom: 0.55rem;
-}
-
-.dashboard-stat > small {
-    color: #999;
-
-    font-size: 0.72rem;
-}
-
-
-/* ---------------------------------------------------------
-   COLUNAS
-   --------------------------------------------------------- */
-
-.dashboard-columns {
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 1.5fr)
-        minmax(300px, 1fr);
-
-    gap: 1rem;
-
-    margin-bottom: 1.5rem;
-}
-
-
-/* PAINEL */
-
-.admin-panel {
-    background-color: #ffffff;
-
-    border: 1px solid #e4e6e7;
-
-    border-radius: 7px;
-
-    overflow: hidden;
-}
-
-.panel-header {
-    padding: 1.25rem 1.4rem;
-
-    border-bottom: 1px solid #eeeeee;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-}
-
-.panel-header h2 {
-    color: #333;
-
-    font-size: 1rem;
-
-    font-weight: 600;
-
-    margin: 0;
-}
-
-.panel-header a {
-    color: #4CAF50;
-
-    font-size: 0.75rem;
-
-    font-weight: 600;
-
-    text-decoration: none;
-}
-
-.panel-header a:hover {
-    text-decoration: underline;
-}
-
-
-/* ---------------------------------------------------------
-   ATIVIDADES
-   --------------------------------------------------------- */
-
-.activity-list {
-    padding: 0 1.4rem;
-}
-
-.activity-item {
-    display: flex;
-
-    gap: 0.9rem;
-
-    padding: 1rem 0;
-
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.activity-item:last-child {
-    border-bottom: none;
-}
-
-.activity-marker {
-    flex-shrink: 0;
-
-    width: 28px;
-    height: 28px;
-
-    border-radius: 50%;
-
-    background-color: #f0f7f1;
-
-    color: #4CAF50;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 0.75rem;
-
-    font-weight: 700;
-}
-
-.activity-item strong {
-    display: block;
-
-    color: #444;
-
-    font-size: 0.8rem;
-
-    margin-bottom: 0.25rem;
-}
-
-.activity-item p {
-    color: #888;
-
-    font-size: 0.72rem;
-
-    margin: 0 0 0.3rem;
-
-    line-height: 1.4;
-}
-
-.activity-item small {
-    color: #aaa;
-
-    font-size: 0.65rem;
-}
-
-
-/* ---------------------------------------------------------
-   AGENDA
-   --------------------------------------------------------- */
-
-.agenda-list {
-    padding: 0 1.4rem;
-}
-
-.agenda-item {
-    display: flex;
-
-    align-items: center;
-
-    gap: 1rem;
-
-    padding: 1rem 0;
-
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.agenda-item:last-child {
-    border-bottom: none;
-}
-
-.agenda-date {
-    width: 42px;
-
-    flex-shrink: 0;
-
-    text-align: center;
-
-    padding: 0.45rem 0;
-
-    background-color: #f5f7f6;
-
-    border-radius: 6px;
-}
-
-.agenda-date strong {
-    display: block;
-
-    color: #333;
-
-    font-size: 1rem;
-}
-
-.agenda-date small {
-    color: #4CAF50;
-
-    font-size: 0.58rem;
-
-    font-weight: 700;
-}
-
-.agenda-item > div:last-child strong {
-    display: block;
-
-    color: #444;
-
-    font-size: 0.78rem;
-
-    margin-bottom: 0.3rem;
-}
-
-.agenda-item p {
-    color: #999;
-
-    font-size: 0.68rem;
-
-    margin: 0;
-}
-
-
-/* ---------------------------------------------------------
-   ACESSOS RÁPIDOS
-   --------------------------------------------------------- */
-
-.quick-section {
-    margin-top: 1.5rem;
-}
-
-.quick-section > .panel-header {
-    background-color: transparent;
-
-    border-bottom: none;
-
-    padding: 0 0 1rem;
-}
-
-.quick-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 1rem;
-}
-
-.quick-card {
-    background-color: #ffffff;
-
-    border: 1px solid #e4e6e7;
-
-    border-radius: 7px;
-
-    padding: 1rem;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 0.8rem;
-
-    text-decoration: none;
-
-    transition:
-        border-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.quick-card:hover {
-    border-color: #b9d9bd;
-
-    transform: translateY(-1px);
-}
-
-.quick-card > span {
-    width: 34px;
-    height: 34px;
-
-    border-radius: 6px;
-
-    background-color: #f1f7f2;
-
-    color: #4CAF50;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-}
-
-.quick-card strong {
-    display: block;
-
-    color: #444;
-
-    font-size: 0.78rem;
-
-    margin-bottom: 0.2rem;
-}
-
-.quick-card small {
-    display: block;
-
-    color: #999;
-
-    font-size: 0.65rem;
-}
-
-
-/* ---------------------------------------------------------
-   RODAPÉ
-   --------------------------------------------------------- */
-
-.admin-footer {
-    margin-top: auto;
-
-    min-height: 55px;
-
-    padding: 0 2rem;
-
-    border-top: 1px solid #e4e6e7;
-
-    background-color: #ffffff;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    color: #999;
-
-    font-size: 0.68rem;
-}
-
-
-/* ---------------------------------------------------------
-   RESPONSIVIDADE
-   --------------------------------------------------------- */
-
-@media (max-width: 1100px) {
-
-    .dashboard-stats {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-    .quick-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-}
-
-
-@media (max-width: 850px) {
-
-    .admin-sidebar {
-        width: 210px;
-        min-width: 210px;
-    }
-
-    .admin-main {
-        margin-left: 210px;
-
-        width: calc(100% - 210px);
-    }
-
-    .dashboard-columns {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-
-@media (max-width: 650px) {
-
-    .admin-sidebar {
-        position: static;
-
-        width: 100%;
-        min-width: 100%;
-
-        min-height: auto;
-    }
-
-    .admin-layout {
-        display: block;
-    }
-
-    .admin-main {
-        margin-left: 0;
-
-        width: 100%;
-    }
-
-    .admin-menu {
-        flex-direction: row;
-
-        flex-wrap: wrap;
-    }
-
-    .admin-menu-title,
-    .admin-sidebar-bottom {
-        display: none;
-    }
-
-    .admin-brand {
-        height: 65px;
-    }
-
-    .admin-topbar {
-        padding: 0 1rem;
-    }
-
-    .admin-content {
-        padding: 1.2rem;
-    }
-
-    .dashboard-stats,
-    .quick-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .admin-footer {
-        padding: 1rem;
-
-        flex-direction: column;
-
-        justify-content: center;
-
-        gap: 0.3rem;
-    }
-
-}
-
-/* =========================================================
-   ESTOQUE
-   ========================================================= */
-
-.estoque-title {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2rem;
-}
-
-.estoque-btn {
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.7rem 1.1rem;
-    border-radius: 6px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.estoque-btn:hover {
-    background-color: #438f47;
-}
-
-
-/* RESUMO */
-
-.estoque-stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.estoque-stat {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    padding: 1.2rem;
-}
-
-.estoque-stat span {
-    display: block;
-    color: #777;
-    font-size: 0.75rem;
-    margin-bottom: 0.8rem;
-}
-
-.estoque-stat strong {
-    display: block;
-    color: #222;
-    font-size: 1.7rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.estoque-stat small {
-    color: #999;
-    font-size: 0.68rem;
-}
-
-.estoque-warning strong {
-    color: #b17a18;
-}
-
-.estoque-danger strong {
-    color: #b94a48;
-}
-
-
-/* FILTROS */
-
-.estoque-filters {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    padding: 1.2rem;
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.estoque-search {
-    flex: 1;
-}
-
-.estoque-filter {
-    width: 220px;
-}
-
-.estoque-filters label {
-    display: block;
-    color: #666;
-    font-size: 0.72rem;
-    font-weight: 600;
-    margin-bottom: 0.45rem;
-}
-
-.estoque-filters input,
-.estoque-filters select {
-    width: 100%;
-    height: 38px;
-    border: 1px solid #d9dcdd;
-    border-radius: 5px;
-    padding: 0 0.75rem;
-    color: #444;
-    background-color: #ffffff;
-    font-size: 0.78rem;
-    outline: none;
-}
-
-.estoque-filters input:focus,
-.estoque-filters select:focus {
-    border-color: #4CAF50;
-}
-
-
-/* TABELA */
-
-.estoque-table-panel {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    overflow: hidden;
-}
-
-.estoque-table-container {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.estoque-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-}
-
-.estoque-table th {
-    background-color: #f8f9f9;
-    color: #777;
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-align: left;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    padding: 0.9rem 1.2rem;
-    border-bottom: 1px solid #e5e7e8;
-}
-
-.estoque-table td {
-    padding: 1rem 1.2rem;
-    border-bottom: 1px solid #eeeeee;
-    color: #777;
-    font-size: 0.75rem;
-}
-
-.estoque-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.estoque-table tbody tr:hover {
-    background-color: #fafbfa;
-}
-
-.estoque-table td strong {
-    color: #444;
-    font-weight: 600;
-}
-
-
-/* STATUS */
-
-.estoque-status {
-    display: inline-block;
-    padding: 0.3rem 0.55rem;
-    border-radius: 4px;
-    font-size: 0.63rem;
-    font-weight: 600;
-}
-
-.status-normal {
-    background-color: #eaf5ec;
-    color: #3d9742;
-}
-
-.status-low {
-    background-color: #fff5df;
-    color: #a26c08;
-}
-
-.status-out {
-    background-color: #fbeaea;
-    color: #b94a48;
-}
-
-
-/* AÇÕES */
-
-.estoque-action {
-    border: 1px solid #d8dddd;
-    background-color: white;
-    color: #555;
-    padding: 0.4rem 0.7rem;
-    border-radius: 4px;
-    font-size: 0.68rem;
-    cursor: pointer;
-}
-
-.estoque-action:hover {
-    border-color: #4CAF50;
-    color: #4CAF50;
-}
-
-
-/* RESPONSIVO */
-
-@media (max-width: 1100px) {
-
-    .estoque-stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-}
-
-@media (max-width: 700px) {
-
-    .estoque-title {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .estoque-filters {
-        flex-direction: column;
-    }
-
-    .estoque-filter {
-        width: 100%;
-    }
-
-    .estoque-stats {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-/* =========================================================
-   ESTOQUE - NOVA TELA
-   ========================================================= */
-
-.admin-main {
-    max-width: none;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
-}
-
-
-/* TÍTULO */
-
-.estoque-title {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2rem;
-}
-
-.estoque-btn {
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.7rem 1.1rem;
-    border-radius: 6px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.estoque-btn:hover {
-    background-color: #438f47;
-}
-
-
-/* RESUMO */
-
-.estoque-stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.estoque-stat {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    padding: 1.2rem;
-}
-
-.estoque-stat span {
-    display: block;
-    color: #777;
-    font-size: 0.75rem;
-    margin-bottom: 0.8rem;
-}
-
-.estoque-stat strong {
-    display: block;
-    color: #222;
-    font-size: 1.7rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.estoque-stat small {
-    color: #999;
-    font-size: 0.68rem;
-}
-
-.estoque-warning strong {
-    color: #b17a18;
-}
-
-.estoque-danger strong {
-    color: #b94a48;
-}
-
-
-/* FILTROS */
-
-.estoque-filters {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    padding: 1.2rem;
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.estoque-search {
-    flex: 1;
-}
-
-.estoque-filter {
-    width: 220px;
-}
-
-.estoque-filters label {
-    display: block;
-    color: #666;
-    font-size: 0.72rem;
-    font-weight: 600;
-    margin-bottom: 0.45rem;
-}
-
-.estoque-filters input,
-.estoque-filters select {
-    width: 100%;
-    height: 38px;
-    border: 1px solid #d9dcdd;
-    border-radius: 5px;
-    padding: 0 0.75rem;
-    color: #444;
-    background-color: #ffffff;
-    font-size: 0.78rem;
-    outline: none;
-}
-
-.estoque-filters input:focus,
-.estoque-filters select:focus {
-    border-color: #4CAF50;
-}
-
-
-/* TABELA */
-
-.estoque-table-panel {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    overflow: hidden;
-}
-
-.estoque-table-container {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.estoque-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-}
-
-.estoque-table th {
-    background-color: #f8f9f9;
-    color: #777;
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-align: left;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    padding: 0.9rem 1.2rem;
-    border-bottom: 1px solid #e5e7e8;
-}
-
-.estoque-table td {
-    padding: 1rem 1.2rem;
-    border-bottom: 1px solid #eeeeee;
-    color: #777;
-    font-size: 0.75rem;
-}
-
-.estoque-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.estoque-table tbody tr:hover {
-    background-color: #fafbfa;
-}
-
-.estoque-table td strong {
-    color: #444;
-    font-weight: 600;
-}
-
-
-/* STATUS */
-
-.estoque-status {
-    display: inline-block;
-    padding: 0.3rem 0.55rem;
-    border-radius: 4px;
-    font-size: 0.63rem;
-    font-weight: 600;
-}
-
-.status-normal {
-    background-color: #eaf5ec;
-    color: #3d9742;
-}
-
-.status-low {
-    background-color: #fff5df;
-    color: #a26c08;
-}
-
-.status-out {
-    background-color: #fbeaea;
-    color: #b94a48;
-}
-
-
-/* BOTÃO EDITAR */
-
-.estoque-action {
-    border: 1px solid #d8dddd;
-    background-color: white;
-    color: #555;
-    padding: 0.4rem 0.7rem;
-    border-radius: 4px;
-    font-size: 0.68rem;
-    cursor: pointer;
-}
-
-.estoque-action:hover {
-    border-color: #4CAF50;
-    color: #4CAF50;
-}
-
-
-/* RESPONSIVO */
-
-@media (max-width: 1100px) {
-
-    .estoque-stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-}
-
-@media (max-width: 700px) {
-
-    .estoque-title {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .estoque-filters {
-        flex-direction: column;
-    }
-
-    .estoque-filter {
-        width: 100%;
-    }
-
-    .estoque-stats {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-/* =========================================================
-   TELA DE INTERESSE EM ADOÇÃO
-   ========================================================= */
-
-.interesse-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 2rem;
-    align-items: start;
-}
-
-
-/* ANIMAL */
-
-.interesse-animal {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.interesse-animal > .eyebrow {
-    display: block;
-    padding: 1.2rem 1.3rem 0.8rem;
-}
-
-.interesse-animal-card {
-    padding: 0 1.3rem 1.3rem;
-}
-
-.interesse-animal-img {
-    width: 100%;
-    height: 280px;
-    border-radius: 6px;
-    background-size: cover;
-    background-position: center;
-    background-color: #eeeeee;
-}
-
-.interesse-animal-img.thor {
-    background-image:
-        url('https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80');
-}
-
-.interesse-animal-img.luna {
-    background-image:
-        url('https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=800&q=80');
-}
-
-.interesse-animal-img.mel {
-    background-image:
-        url('https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=800&q=80');
-}
-
-.interesse-animal-info {
-    padding-top: 1rem;
-}
-
-.interesse-animal-info h2 {
-    color: #333;
-    margin-bottom: 0.4rem;
-}
+// =====================================================
+// LOGIN
+// =====================================================
 
-.interesse-animal-info p {
-    color: #777;
-    margin-bottom: 0.5rem;
-}
+function fazerLogin(event) {
 
-.interesse-animal-info small {
-    color: #888;
-}
+    // Impede o formulário de atualizar a página
+    event.preventDefault();
 
 
-/* FORMULÁRIO */
+    // Pega os valores digitados
+    const email = document.getElementById("email").value;
 
-.interesse-form-card {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 8px;
-    padding: 1.8rem;
-}
+    const senha = document.getElementById("password").value;
 
-.interesse-form-card h2 {
-    color: #333;
-    margin-bottom: 0.5rem;
-}
 
-.interesse-form-card > p {
-    color: #777;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-}
+    // Dados de acesso do administrador
+    const emailCorreto = "admin@patinhas.com";
 
-.interesse-form-group {
-    margin-bottom: 1rem;
-}
+    const senhaCorreta = "1234";
 
-.interesse-form-group label {
-    display: block;
-    color: #555;
-    font-weight: 600;
-    font-size: 0.8rem;
-    margin-bottom: 0.4rem;
-}
 
-.interesse-form-group input,
-.interesse-form-group select,
-.interesse-form-group textarea {
-    width: 100%;
-    border: 1px solid #d9dcdd;
-    border-radius: 6px;
-    padding: 0.75rem;
-    font-family: inherit;
-    font-size: 0.85rem;
-    color: #444;
-    outline: none;
-}
+    // Verifica os dados
+    if (
+        email === emailCorreto &&
+        senha === senhaCorreta
+    ) {
 
-.interesse-form-group input,
-.interesse-form-group select {
-    height: 42px;
-}
+        // Guarda que o usuário está logado
+        localStorage.setItem(
+            "usuarioLogado",
+            "true"
+        );
 
-.interesse-form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
 
-.interesse-form-group input:focus,
-.interesse-form-group select:focus,
-.interesse-form-group textarea:focus {
-    border-color: #4CAF50;
-}
+        // Vai para o Dashboard
+        window.location.href = "dashboard.html";
 
 
-/* RESPONSIVO */
+    } else {
 
-@media (max-width: 800px) {
+        // Dados incorretos
+        alert(
+            "E-mail ou senha incorretos!"
+        );
 
-    .interesse-grid {
-        grid-template-columns: 1fr;
     }
-
-}
-
-
-/* =========================================================
-   GESTÃO DE ANIMAIS
-   ========================================================= */
-
-
-/* TÍTULO E BOTÃO DE CADASTRO */
-
-.animais-title {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2rem;
-}
-
-.animais-btn {
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.7rem 1.1rem;
-    border-radius: 6px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.animais-btn:hover {
-    background-color: #438f47;
-}
-
-
-/* INDICADORES */
-
-.animais-stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.animais-stat {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    padding: 1.2rem;
-    min-height: 125px;
-}
-
-.animais-stat span {
-    display: block;
-    color: #777;
-    font-size: 0.75rem;
-    margin-bottom: 0.8rem;
-}
-
-.animais-stat strong {
-    display: block;
-    color: #222;
-    font-size: 1.7rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.animais-stat small {
-    color: #999;
-    font-size: 0.68rem;
-}
-
-
-/* FILTROS */
-
-.animais-filters {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    padding: 1.2rem;
-
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 220px 220px;
-    gap: 1rem;
-
-    margin-bottom: 1.5rem;
-}
-
-.animais-search {
-    min-width: 0;
-}
-
-.animais-filters label {
-    display: block;
-    color: #666;
-    font-size: 0.72rem;
-    font-weight: 600;
-    margin-bottom: 0.45rem;
-}
-
-.animais-filters input,
-.animais-filters select {
-    width: 100%;
-    height: 38px;
-
-    border: 1px solid #d9dcdd;
-    border-radius: 5px;
-
-    padding: 0 0.75rem;
-
-    color: #444;
-    background-color: #ffffff;
-
-    font-size: 0.78rem;
-    outline: none;
-}
-
-.animais-filters input:focus,
-.animais-filters select:focus {
-    border-color: #4CAF50;
-}
-
-
-/* PAINEL DA TABELA */
 
-.animais-table-panel {
-    width: 100%;
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    overflow: hidden;
 }
 
-.animais-table-container {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.animais-table {
-    width: 100%;
-    min-width: 850px;
-    border-collapse: collapse;
-}
-
-
-/* CABEÇALHO DA TABELA */
-
-.animais-table thead {
-    background-color: #f8f9f9;
-}
-
-.animais-table th {
-    padding: 14px 18px;
-
-    color: #777;
-    font-size: 0.68rem;
-    font-weight: 700;
-
-    text-align: left;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-
-    border-bottom: 1px solid #e5e7e8;
-    white-space: nowrap;
-}
-
-
-/* LINHAS E CÉLULAS */
-
-.animais-table tbody tr {
-    background-color: #ffffff;
-    transition: background-color 0.2s ease;
-}
-
-.animais-table tbody tr:hover {
-    background-color: #fafbfa;
-}
-
-.animais-table td {
-    padding: 15px 18px;
-
-    color: #777;
-    font-size: 0.75rem;
-
-    border-bottom: 1px solid #eeeeee;
-    white-space: nowrap;
-}
-
-.animais-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.animais-table td strong {
-    color: #444;
-    font-weight: 600;
-}
-
-
-/* SITUAÇÃO DOS ANIMAIS */
-
-.animal-status {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 5px;
-    font-size: 0.63rem;
-    font-weight: 600;
-    white-space: nowrap;
-}
-
-.status-disponivel {
-    background-color: #eaf5ec;
-    color: #3d9742;
-}
 
-.status-processo {
-    background-color: #fff5df;
-    color: #a26c08;
-}
-
-.status-adotado {
-    background-color: #eeeeee;
-    color: #666666;
-}
-
-
-/* BOTÕES DE AÇÃO */
-
-.animal-action {
-    border: 1px solid #d8dddd;
-    background-color: #ffffff;
-    color: #555555;
-
-    padding: 6px 10px;
-    border-radius: 5px;
-
-    font-size: 0.68rem;
-    font-weight: 500;
 
-    cursor: pointer;
-    white-space: nowrap;
+// =====================================================
+// VERIFICAR LOGIN
+// =====================================================
 
-    transition: all 0.2s ease;
-}
-
-.animal-action:hover {
-    border-color: #4CAF50;
-    color: #4CAF50;
-    background-color: #f7fbf7;
-}
-
-
-/* RESPONSIVIDADE */
-
-@media (max-width: 1100px) {
-
-    .animais-stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+function verificarLogin() {
 
-    .animais-filters {
-        grid-template-columns: 1fr 1fr;
-    }
+    const usuarioLogado =
+        localStorage.getItem("usuarioLogado");
 
-}
 
-@media (max-width: 700px) {
+    // Se não estiver logado,
+    // volta para a tela de login
 
-    .animais-title {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+    if (usuarioLogado !== "true") {
 
-    .animais-stats {
-        grid-template-columns: 1fr;
-    }
+        window.location.href = "login.html";
 
-    .animais-filters {
-        grid-template-columns: 1fr;
     }
-
-}
-
-
-
-/* =========================================================
-   AGENDA ADMINISTRATIVA
-   ========================================================= */
-
-
-/* TÍTULO E BOTÃO */
-
-.agenda-title {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2rem;
-}
-
-.agenda-btn {
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.7rem 1.1rem;
-    border-radius: 6px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.agenda-btn:hover {
-    background-color: #438f47;
-}
-
-
-/* INDICADORES */
-
-.agenda-stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.agenda-stat {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    padding: 1.2rem;
-    min-height: 125px;
-}
-
-.agenda-stat span {
-    display: block;
-    color: #777;
-    font-size: 0.75rem;
-    margin-bottom: 0.8rem;
-}
-
-.agenda-stat strong {
-    display: block;
-    color: #222;
-    font-size: 1.7rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.agenda-stat small {
-    color: #999;
-    font-size: 0.68rem;
-}
-
-
-/* FILTROS */
-
-.agenda-filters {
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    padding: 1.2rem;
-
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 170px 200px 170px;
-    gap: 1rem;
-
-    margin-bottom: 1.5rem;
-}
-
-.agenda-filters > div {
-    min-width: 0;
-}
-
-.agenda-filters label {
-    display: block;
-    color: #666;
-    font-size: 0.72rem;
-    font-weight: 600;
-    margin-bottom: 0.45rem;
-}
-
-.agenda-filters input,
-.agenda-filters select {
-    width: 100%;
-    height: 38px;
-
-    border: 1px solid #d9dcdd;
-    border-radius: 5px;
-
-    padding: 0 0.75rem;
-
-    color: #444;
-    background-color: #ffffff;
-
-    font-size: 0.78rem;
-    outline: none;
-}
-
-.agenda-filters input:focus,
-.agenda-filters select:focus {
-    border-color: #4CAF50;
-}
-
-
-/* PAINEL DA TABELA */
-
-.agenda-table-panel {
-    width: 100%;
-    background-color: #ffffff;
-    border: 1px solid #e4e6e7;
-    border-radius: 7px;
-    overflow: hidden;
-}
-
-.agenda-table-container {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.agenda-table {
-    width: 100%;
-    min-width: 950px;
-    border-collapse: collapse;
-}
-
-
-/* CABEÇALHO */
-
-.agenda-table thead {
-    background-color: #f8f9f9;
-}
-
-.agenda-table th {
-    padding: 14px 18px;
-
-    color: #777;
-    font-size: 0.68rem;
-    font-weight: 700;
-
-    text-align: left;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-
-    border-bottom: 1px solid #e5e7e8;
-    white-space: nowrap;
-}
-
-
-/* LINHAS E CÉLULAS */
-
-.agenda-table tbody tr {
-    background-color: #ffffff;
-    transition: background-color 0.2s ease;
-}
-
-.agenda-table tbody tr:hover {
-    background-color: #fafbfa;
-}
-
-.agenda-table td {
-    padding: 15px 18px;
-
-    color: #777;
-    font-size: 0.75rem;
-
-    border-bottom: 1px solid #eeeeee;
-    white-space: nowrap;
-}
-
-.agenda-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.agenda-table td strong {
-    color: #444;
-    font-weight: 600;
-}
-
-
-/* SITUAÇÃO DOS COMPROMISSOS */
 
-.agenda-status {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 5px;
-    font-size: 0.63rem;
-    font-weight: 600;
-    white-space: nowrap;
 }
 
-.agenda-agendado {
-    background-color: #eaf5ec;
-    color: #3d9742;
-}
-
-.agenda-concluido {
-    background-color: #eeeeee;
-    color: #666666;
-}
-
-.agenda-cancelado {
-    background-color: #fbeaea;
-    color: #b94a48;
-}
-
-
-/* BOTÕES DE AÇÃO */
-
-.agenda-action {
-    border: 1px solid #d8dddd;
-    background-color: #ffffff;
-    color: #555555;
 
-    padding: 6px 10px;
-    border-radius: 5px;
 
-    font-size: 0.68rem;
-    font-weight: 500;
+// =====================================================
+// SAIR DA CONTA
+// =====================================================
 
-    cursor: pointer;
-    white-space: nowrap;
+function fazerLogout() {
 
-    transition: all 0.2s ease;
-}
-
-.agenda-action:hover {
-    border-color: #4CAF50;
-    color: #4CAF50;
-    background-color: #f7fbf7;
-}
-
+    // Remove o login salvo
+    localStorage.removeItem(
+        "usuarioLogado"
+    );
 
-/* RESPONSIVIDADE */
 
-@media (max-width: 1200px) {
+    // Volta para a tela de login
+    window.location.href = "login.html";
 
-    .agenda-filters {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
 }
 
-@media (max-width: 1100px) {
-
-    .agenda-stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 
-}
 
-@media (max-width: 700px) {
+// =====================================================
+// INTERESSE EM ADOÇÃO
+// =====================================================
 
-    .agenda-title {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+function demonstrarInteresse(nomeAnimal) {
 
-    .agenda-stats {
-        grid-template-columns: 1fr;
-    }
+    alert(
+        "Obrigado pelo interesse em " +
+        nomeAnimal +
+        "!\n\n" +
+        "Entre em contato com a ONG para " +
+        "agendar uma visita."
+    );
 
-    .agenda-filters {
-        grid-template-columns: 1fr;
-    }
 }
-
-
-    /* =========================================================
-    FUNCIONÁRIOS - ÁREA ADMINISTRATIVA
-    ========================================================= */
-
-
-    /* TÍTULO E BOTÃO */
-
-    .funcionarios-title {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 2rem;
-    }
-
-    .funcionarios-btn {
-        border: none;
-        background-color: #4CAF50;
-        color: white;
-        padding: 0.7rem 1.1rem;
-        border-radius: 6px;
-        font-size: 0.78rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-        margin-bottom: 20px;
-    }
-
-    .funcionarios-btn:hover {
-        background-color: #438f47;
-    }
-
-
-    /* INDICADORES */
 
-    .funcionarios-stats {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .funcionarios-stat {
-        background-color: #ffffff;
-        border: 1px solid #e4e6e7;
-        border-radius: 7px;
-        padding: 1.2rem;
-        min-height: 125px;
-    }
-
-    .funcionarios-stat span {
-        display: block;
-        color: #777;
-        font-size: 0.75rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .funcionarios-stat strong {
-        display: block;
-        color: #222;
-        font-size: 1.7rem;
-        font-weight: 600;
-        margin-bottom: 0.4rem;
-    }
-
-    .funcionarios-stat small {
-        color: #999;
-        font-size: 0.68rem;
-    }
-
 
-    /* FILTROS */
 
-    .funcionarios-filters {
-        background-color: #ffffff;
-        border: 1px solid #e4e6e7;
-        border-radius: 7px;
-        padding: 1.2rem;
+// =====================================================
+// DOAÇÃO
+// =====================================================
 
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 220px 200px;
-        gap: 1rem;
+function realizarDoacao() {
 
-        margin-bottom: 1.5rem;
-    }
+    const campo =
+        document.getElementById("valor");
 
-    .funcionarios-filters > div {
-        min-width: 0;
-    }
 
-    .funcionarios-filters label {
-        display: block;
-        color: #666;
-        font-size: 0.72rem;
-        font-weight: 600;
-        margin-bottom: 0.45rem;
+    if (!campo) {
+        return;
     }
 
-    .funcionarios-filters input,
-    .funcionarios-filters select {
-        width: 100%;
-        height: 38px;
-        border: 1px solid #d9dcdd;
-        border-radius: 5px;
-        padding: 0 0.75rem;
-        color: #444;
-        background-color: #ffffff;
-        font-size: 0.78rem;
-        outline: none;
-    }
 
-    .funcionarios-filters input:focus,
-    .funcionarios-filters select:focus {
-        border-color: #4CAF50;
-    }
+    const valor =
+        Number(campo.value);
 
 
-    /* PAINEL DA TABELA */
+    if (
+        campo.value === "" ||
+        valor <= 0
+    ) {
 
-    .funcionarios-table-panel {
-        width: 100%;
-        background-color: #ffffff;
-        border: 1px solid #e4e6e7;
-        border-radius: 7px;
-        overflow: hidden;
-    }
+        alert(
+            "Digite um valor válido para a doação."
+        );
 
-    .funcionarios-table-container {
-        width: 100%;
-        overflow-x: auto;
-    }
+        return;
 
-    .funcionarios-table {
-        width: 100%;
-        min-width: 950px;
-        border-collapse: collapse;
     }
 
 
-    /* CABEÇALHO DA TABELA */
+    alert(
+        "Obrigado pela sua doação de R$ " +
+        valor.toFixed(2) +
+        "!"
+    );
 
-    .funcionarios-table thead {
-        background-color: #f8f9f9;
-    }
-
-    .funcionarios-table th {
-        padding: 14px 18px;
-        color: #777;
-        font-size: 0.68rem;
-        font-weight: 700;
-        text-align: left;
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-        border-bottom: 1px solid #e5e7e8;
-        white-space: nowrap;
-    }
+}
 
 
-    /* LINHAS E CÉLULAS */
 
-    .funcionarios-table tbody tr {
-        background-color: #ffffff;
-        transition: background-color 0.2s ease;
-    }
+// =====================================================
+// FILTRO DE ANIMAIS
+// =====================================================
 
-    .funcionarios-table tbody tr:hover {
-        background-color: #fafbfa;
-    }
+function filtrarAnimais() {
 
-    .funcionarios-table td {
-        padding: 15px 18px;
-        color: #777;
-        font-size: 0.75rem;
-        border-bottom: 1px solid #eeeeee;
-        white-space: nowrap;
-    }
+    const campo =
+        document.getElementById("filtroAnimais");
 
-    .funcionarios-table tbody tr:last-child td {
-        border-bottom: none;
-    }
 
-    .funcionarios-table td strong {
-        color: #444;
-        font-weight: 600;
+    if (!campo) {
+        return;
     }
 
 
-    /* SITUAÇÃO DOS FUNCIONÁRIOS */
+    const texto =
+        campo.value.toLowerCase();
 
-    .funcionario-status {
-        display: inline-block;
-        padding: 5px 9px;
-        border-radius: 5px;
-        font-size: 0.63rem;
-        font-weight: 600;
-        white-space: nowrap;
-    }
-
-    .funcionario-ativo {
-        background-color: #eaf5ec;
-        color: #3d9742;
-    }
 
-    .funcionario-afastado {
-        background-color: #fbeaea;
-        color: #b94a48;
-    }
+    const animais =
+        document.querySelectorAll(".pet-card");
 
-    .funcionario-voluntario {
-        background-color: #eaf1fa;
-        color: #4778ad;
-    }
 
+    animais.forEach(function(animal) {
 
-    /* BOTÕES DE AÇÃO */
-
-    .funcionario-action {
-        border: 1px solid #d8dddd;
-        background-color: #ffffff;
-        color: #555555;
-        padding: 6px 10px;
-        border-radius: 5px;
-        font-size: 0.68rem;
-        font-weight: 500;
-        cursor: pointer;
-        white-space: nowrap;
-        transition: all 0.2s ease;
-    }
+        const conteudo =
+            animal.innerText.toLowerCase();
 
-    .funcionario-action:hover {
-        border-color: #4CAF50;
-        color: #4CAF50;
-        background-color: #f7fbf7;
-    }
 
+        if (
+            conteudo.includes(texto)
+        ) {
 
-    /* RESPONSIVIDADE */
+            animal.style.display = "";
 
-    @media (max-width: 1200px) {
-        .funcionarios-filters {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-    }
+        } else {
 
-    @media (max-width: 1100px) {
-        .funcionarios-stats {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-    }
+            animal.style.display = "none";
 
-    @media (max-width: 700px) {
-        .funcionarios-title {
-            flex-direction: column;
-            align-items: flex-start;
         }
 
-        .funcionarios-stats {
-            grid-template-columns: 1fr;
+    });
+
+}
+
+// =====================================================
+// FILTRO DO ESTOQUE
+// =====================================================
+
+function filtrarEstoque() {
+
+    const busca = document
+        .getElementById("buscaEstoque")
+        .value
+        .toLowerCase();
+
+    const categoria = document
+        .getElementById("categoriaEstoque")
+        .value
+        .toLowerCase();
+
+    const linhas = document
+        .querySelectorAll("#tabelaEstoque tr");
+
+
+    linhas.forEach(function(linha) {
+
+        const produto = linha
+            .querySelector("td:nth-child(1)")
+            .innerText
+            .toLowerCase();
+
+        const categoriaProduto = linha
+            .querySelector("td:nth-child(2)")
+            .innerText
+            .toLowerCase();
+
+
+        // Verifica se o nome corresponde à busca
+        const correspondeBusca =
+            produto.includes(busca);
+
+
+        // Verifica a categoria
+        let correspondeCategoria = true;
+
+        if (categoria !== "") {
+
+            correspondeCategoria =
+                categoriaProduto.includes(categoria);
+
         }
 
-        .funcionarios-filters {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 220px 200px;
-            gap: 1rem;
+
+        // Decide se a linha aparece
+        if (
+            correspondeBusca &&
+            correspondeCategoria
+        ) {
+
+            linha.style.display = "";
+
+        } else {
+
+            linha.style.display = "none";
+
         }
+
+    });
+
+}
+
+// =====================================================
+// TELA DE INTERESSE EM ADOÇÃO
+// =====================================================
+
+function carregarAnimalInteresse() {
+
+    const parametros =
+        new URLSearchParams(window.location.search);
+
+    const animal =
+        parametros.get("animal");
+
+
+    const nome =
+        document.getElementById("interesseNome");
+
+    const descricao =
+        document.getElementById("interesseDescricao");
+
+    const caracteristicas =
+        document.getElementById("interesseCaracteristicas");
+
+    const imagem =
+        document.getElementById("interesseImagem");
+
+
+    if (!animal || !nome || !descricao) {
+        return;
     }
-    .admin-topbar {
-    position: relative;
+
+
+    if (animal === "thor") {
+
+        nome.innerText = "Thor";
+
+        descricao.innerText =
+            "Macho · 2 anos · Porte médio";
+
+        caracteristicas.innerText =
+            "Sociável · Vacinado";
+
+        imagem.classList.add("thor");
+
+    }
+
+
+    else if (animal === "luna") {
+
+        nome.innerText = "Luna";
+
+        descricao.innerText =
+            "Fêmea · 1 ano · Porte pequeno";
+
+        caracteristicas.innerText =
+            "Tranquila · Vacinada";
+
+        imagem.classList.add("luna");
+
+    }
+
+
+    else if (animal === "mel") {
+
+        nome.innerText = "Mel";
+
+        descricao.innerText =
+            "Fêmea · 3 anos · Porte pequeno";
+
+        caracteristicas.innerText =
+            "Carinhosa · Vacinada";
+
+        imagem.classList.add("mel");
+
+    }
+
+}
+
+
+// =====================================================
+// ENVIAR INTERESSE
+// =====================================================
+
+function enviarInteresse(event) {
+
+    event.preventDefault();
+
+
+    const nome =
+        document.getElementById("nomeInteresse").value;
+
+
+    const parametros =
+        new URLSearchParams(window.location.search);
+
+    const animal =
+        parametros.get("animal");
+
+
+    let nomeAnimal = "animal";
+
+
+    if (animal === "thor") {
+        nomeAnimal = "Thor";
+    }
+
+    else if (animal === "luna") {
+        nomeAnimal = "Luna";
+    }
+
+    else if (animal === "mel") {
+        nomeAnimal = "Mel";
+    }
+
+
+    alert(
+        "Interesse enviado com sucesso!\n\n" +
+        "Obrigado, " + nome + "!\n\n" +
+        "A ONG recebeu seu interesse na adoção de " +
+        nomeAnimal +
+        " e poderá entrar em contato com você."
+    );
+
+
+    window.location.href = "adocao.html";
+
 }
